@@ -1,0 +1,24 @@
+audio-ms-swift
+
+This project retains the Apache License, Version 2.0 in LICENSE.
+
+Portions of the optional FireRedASR-LLM plugin and model integration are
+adapted from the FireRedASR-LLM example in ms-swift-aispeech-exp and the
+ms-swift project:
+https://github.com/modelscope/ms-swift
+Copyright (c) ModelScope Contributors. All rights reserved.
+
+ms-swift is installed as an external training-engine dependency, pinned to:
+410a5d18930725d1d3cfe3acdd611eb9795c403b
+Its upstream license and notices remain applicable to that dependency.
+
+FireRedASR model and feature implementations are supplied as a separate,
+externally prepared source dependency from the FireRedASR project:
+https://github.com/FireRedTeam/FireRedASR
+Pinned source commit: 834635e4cf277ed8ca92049fc375b17c3dc20748
+Original FireRedASR copyright, license, and notices remain with that project.
+
+Qwen3-ASR and Qwen model implementations and weights are obtained separately
+from their respective upstream projects and model publishers. Their license
+terms apply separately. No model weights or third-party source checkout are
+included in this repository.

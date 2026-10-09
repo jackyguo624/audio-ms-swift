@@ -1,0 +1,36 @@
+{
+  "date": "2026-10-09",
+  "job_id": "job-179154421182777909657-jiaqi-guo",
+  "dataset": {
+    "name": "AISHELL-1 tiny",
+    "train_samples": 8,
+    "val_samples": 2
+  },
+  "checks": {
+    "pytest_passed": 129,
+    "ruff": "passed",
+    "format": "passed",
+    "pyright": "0 errors",
+    "wheel_and_sdist": "passed",
+    "wheel_import_outside_repository": "passed",
+    "generic_core_model_branches": false
+  },
+  "models": {
+    "qwen3_asr": {
+      "entrypoint": "examples/qwen3_asr/sft.sh",
+      "trained_steps": 2,
+      "resumed_to_step": 3,
+      "final_eval_loss": 0.05012146756052971,
+      "checkpoint": "output/bash_plugin_gpu_20261009_190904/qwen3_asr_output/checkpoint-3"
+    },
+    "fireredasr_llm": {
+      "entrypoint": "examples/fireredasr_llm/sft.sh",
+      "trained_steps": 2,
+      "resumed_to_step": 3,
+      "final_eval_loss": 0.0013538305647671223,
+      "checkpoint": "output/bash_plugin_gpu_20261009_190904/fireredasr_llm_output/checkpoint-3"
+    }
+  },
+  "scope": "Real Bash configuration and explicit plugin loading; tiny data validates training/evaluation/save/resume, not ASR quality.",
+  "artifacts_directory": "output/bash_plugin_gpu_20261009_190904"
+}

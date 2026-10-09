@@ -1,0 +1,64 @@
+[build-system]
+requires = ["hatchling>=1.27,<2"]
+build-backend = "hatchling.build"
+
+[project]
+name = "audio-ms-swift"
+version = "0.1.0"
+description = "Speech model training recipes powered by an installed Swift engine"
+readme = "README.md"
+requires-python = ">=3.11,<3.12"
+license = "Apache-2.0"
+dependencies = [
+    "ms-swift @ git+https://github.com/modelscope/ms-swift.git@410a5d18930725d1d3cfe3acdd611eb9795c403b",
+    "torch==2.10.0",
+    "transformers==4.57.6",
+    "datasets==4.8.4",
+    "peft==0.18.1",
+    "accelerate==1.12.0",
+    "trl==0.28.0",
+    "soundfile>=0.13,<0.14",
+]
+
+[project.optional-dependencies]
+qwen3-asr = ["qwen-asr==0.0.6"]
+fireredasr = ["kaldiio>=2.18,<3", "kaldi-native-fbank>=1.15,<2", "cn2an>=0.5.23,<0.6"]
+
+[project.scripts]
+audio-swift = "audio_swift.cli:main"
+
+[dependency-groups]
+dev = ["pytest>=8,<9", "ruff>=0.15,<0.16", "pyright>=1.1.400,<2"]
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/audio_swift"]
+
+[tool.hatch.build.targets.sdist]
+only-include = ["src/audio_swift", "tests", "examples", "docs", "pyproject.toml", "uv.lock", "README.md", "LICENSE", "NOTICE", ".python-version"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+markers = ["integration: requires the installed Swift engine and FireRed audio dependencies"]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 120
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "B"]
+ignore = ["E501"]
+
+[tool.pyright]
+include = ["src/audio_swift", "tests"]
+extraPaths = ["src", ".vendor/FireRedASR"]
+venvPath = "."
+venv = ".venv"
+pythonVersion = "3.11"
+typeCheckingMode = "basic"
+
+[tool.uv]
+required-version = ">=0.9.15"

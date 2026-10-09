@@ -34,7 +34,7 @@ if [[ -n ${VAL_DATASET:-} ]]; then
     validation=(--val_dataset "$VAL_DATASET" --split_dataset_ratio 0)
 fi
 
-exec uv run --project "$REPO_ROOT" --locked --extra qwen3-asr audio-swift "${command[@]}" \
+exec uv run --project "$REPO_ROOT" --locked audio-swift "${command[@]}" \
     --model "$model" \
     --model_type qwen3_asr \
     --template qwen3_asr \
@@ -67,5 +67,6 @@ exec uv run --project "$REPO_ROOT" --locked --extra qwen3-asr audio-swift "${com
     --logging_steps 10 \
     --dataset_num_proc 1 \
     --dataloader_num_workers 0 \
+    --dataloader_persistent_workers false \
     --report_to none \
     "$@"

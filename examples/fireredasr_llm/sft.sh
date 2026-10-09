@@ -37,7 +37,7 @@ if [[ -n ${VAL_DATASET:-} ]]; then
     validation=(--val_dataset firered_asr_jsonl_val --split_dataset_ratio 0)
 fi
 
-exec uv run --project "$REPO_ROOT" --locked --extra fireredasr audio-swift "${command[@]}" \
+exec uv run --project "$REPO_ROOT" --locked audio-swift "${command[@]}" \
     --external_plugins "${PLUGIN_PATH:-${SCRIPT_DIR}/plugin.py}" \
     --model "$model" \
     --model_type fireredasr_llm \
@@ -71,5 +71,6 @@ exec uv run --project "$REPO_ROOT" --locked --extra fireredasr audio-swift "${co
     --logging_steps 10 \
     --dataset_num_proc 1 \
     --dataloader_num_workers 0 \
+    --dataloader_persistent_workers false \
     --report_to none \
     "$@"

@@ -16,13 +16,13 @@
 使用 Python 3.11 和 [uv](https://docs.astral.sh/uv/)，在仓库根目录运行：
 
 ```bash
-uv sync --locked --all-extras
+uv sync --locked
 uv run --locked audio-swift --help
 ```
 
-只使用一个模型时可分别安装 `uv sync --locked --extra qwen3-asr` 或 `uv sync --locked --extra fireredasr`。训练脚本会选择对应 extra，并使用项目内的 uv 环境。
+默认安装包含本项目当前 Qwen3-ASR 和 FireRedASR-LLM 两套模型的 Python 依赖，训练脚本共用项目内的 uv 环境。FireRed 的官方源码与模型权重仍需单独准备。
 
-Swift 固定到提交 [`410a5d18930725d1d3cfe3acdd611eb9795c403b`](https://github.com/modelscope/ms-swift/tree/410a5d18930725d1d3cfe3acdd611eb9795c403b)，由 uv 安装；无需复制 Swift 代码或执行 `pip install -e` 安装旧仓库。`uv.lock` 固定完整的依赖解析结果。当前兼容基线为 PyTorch 2.10.0、Transformers 4.57.6、datasets 4.8.4、PEFT 0.18.1、Accelerate 1.12.0；Qwen3-ASR 使用 qwen-asr 0.0.6。GPU 驱动须能运行所安装的 PyTorch CUDA 构建。
+Swift 使用 PyPI 发布版本 [`ms-swift==4.5.3`](https://pypi.org/project/ms-swift/4.5.3/)，由 uv 安装；无需复制 Swift 代码或执行 `pip install -e` 安装旧仓库。`uv.lock` 固定完整的依赖解析结果。当前依赖配置为 PyTorch 2.10.0、Transformers 4.57.6、datasets 4.8.4、PEFT 0.18.1、Accelerate 1.12.0；Qwen3-ASR 使用 qwen-asr 0.0.6。GPU 驱动须能运行所安装的 PyTorch CUDA 构建。
 
 FireRedASR 还需准备其官方模型实现：
 
@@ -31,7 +31,7 @@ bash examples/fireredasr_llm/prepare_source.sh
 export FIRERED_ASR_REPO="$PWD/.vendor/FireRedASR"
 ```
 
-此脚本检出提交 [`834635e4cf277ed8ca92049fc375b17c3dc20748`](https://github.com/FireRedTeam/FireRedASR/tree/834635e4cf277ed8ca92049fc375b17c3dc20748)。完整权重布局见 [FireRedASR 示例](examples/fireredasr_llm/README.md)。源码与模型权重不提交到本项目 Git。
+此脚本为独立的 FireRed 官方源码检出提交 [`834635e4cf277ed8ca92049fc375b17c3dc20748`](https://github.com/FireRedTeam/FireRedASR/tree/834635e4cf277ed8ca92049fc375b17c3dc20748)；Swift 引擎仍从 PyPI 按发布版本安装。完整权重布局见 [FireRedASR 示例](examples/fireredasr_llm/README.md)。源码与模型权重不提交到本项目 Git。
 
 ## 准备 tiny 数据
 
@@ -112,10 +112,10 @@ LoRA / Trainer / DDP / checkpoint             ms-swift 依赖
 安装完整依赖并准备固定的 FireRed 源码后，可运行：
 
 ```bash
-uv run --locked --all-extras pytest
-uv run --locked --all-extras ruff check src tests
-uv run --locked --all-extras ruff format --check src tests
-uv run --locked --all-extras pyright
+uv run --locked pytest
+uv run --locked ruff check src tests
+uv run --locked ruff format --check src tests
+uv run --locked pyright
 uv build
 ```
 

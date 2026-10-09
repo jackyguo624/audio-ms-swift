@@ -31,7 +31,7 @@ FireRedASR-LLM 的注册实现位于 `audio_swift.plugins.fireredasr_llm`。示�
 
 FireRed 模型布局、单音频输入、padding、截断与 checkpoint 范围等约束由该 plugin、模板或模型封装保证，不写进通用启动器。示例通过环境变量把本地训练与验证 manifest 提供给 plugin 注册的数据集别名。默认 `lora_llm` 对 LLM 做 LoRA、对音频编码器和投影层做全量训练；当前支持 LoRA 适配器保存，不提供 full checkpoint 导出。
 
-外部源码、权重、数据与训练产物不提交到 Git。uv 管理环境与依赖解析，`uv.lock` 和固定上游提交组成复现基线。升级 Swift 或 FireRedASR 时，应重新检查模型注册、数据对齐、保存和恢复。
+外部源码、权重、数据与训练产物不提交到 Git。Swift 引擎按 PyPI 发布版本 [`ms-swift==4.5.3`](https://pypi.org/project/ms-swift/4.5.3/) 安装；独立的 FireRed 官方源码仍固定到自己的提交。uv 管理环境与依赖解析，`uv sync --locked` 默认安装本项目当前两套模型的 Python 依赖，无需按模型分别安装。发布版本、`uv.lock` 与 FireRed 源码提交组成复现基线。升级 Swift 或 FireRedASR 时，应重新检查模型注册、数据对齐、保存和恢复。
 
 ## 第一版范围与后续扩展
 

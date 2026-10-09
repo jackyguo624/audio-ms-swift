@@ -55,7 +55,7 @@ class FireRedFeatureExtractor:
             import kaldi_native_fbank as knf
             import kaldiio
         except ImportError as exc:
-            raise ImportError("FireRed audio features require: uv sync --extra fireredasr") from exc
+            raise ImportError("FireRed audio features require: uv sync --locked") from exc
         stats = kaldiio.load_mat(str(self.cmvn_file))
         if not isinstance(stats, np.ndarray) or stats.shape != (2, 81) or stats[0, -1] < 1:
             raise ValueError("FireRedASR CMVN must contain valid 2 x 81 Kaldi statistics.")

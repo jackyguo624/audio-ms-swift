@@ -1,6 +1,6 @@
 """CPU integration with real fbank, a tiny encoder/Qwen and LoRA checkpoints.
 
-Run after `uv sync --extra fireredasr --group dev` and preparing upstream source:
+Run after `uv sync --locked` and preparing upstream source:
     FIRERED_ASR_REPO=/path/to/FireRedASR uv run pytest tests/test_firered_integration.py
 The test builds all model weights locally and never downloads a model.
 """

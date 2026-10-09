@@ -23,7 +23,7 @@ fi
 limit=()
 if [[ -n ${LIMIT:-} ]]; then limit=(--limit "$LIMIT"); fi
 
-exec uv run --project "$REPO_ROOT" --locked --extra fireredasr audio-swift prepare-data \
+exec uv run --project "$REPO_ROOT" --locked audio-swift prepare-data \
     --input "$input" --output "$output" \
     --prompt '<audio>请转写音频为文字' \
     "${limit[@]}" "$@"

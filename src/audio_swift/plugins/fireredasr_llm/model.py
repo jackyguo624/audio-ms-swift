@@ -35,7 +35,7 @@ def ensure_firered_source() -> Path | None:
         return None
     raise ImportError(
         "FireRedASR source is missing. Run bash examples/fireredasr_llm/prepare_source.sh from the project root, "
-        "or set FIRERED_ASR_REPO to an existing checkout. Install audio dependencies with uv sync --extra fireredasr."
+        "or set FIRERED_ASR_REPO to an existing checkout. Install audio dependencies with uv sync --locked."
     )
 
 
@@ -135,7 +135,7 @@ def build_model(model_dir, tokenizer, *, torch_dtype=None, device=None, attn_imp
         from fireredasr.models.fireredasr_aed import FireRedAsrAed
         from fireredasr.models.fireredasr_llm import FireRedAsrLlm
     except ImportError as exc:
-        raise ImportError("FireRedASR dependencies are incomplete; run uv sync --extra fireredasr.") from exc
+        raise ImportError("FireRedASR dependencies are incomplete; run uv sync --locked.") from exc
 
     class CompatibleFireRedAsrLlm(FireRedAsrLlm):
         @classmethod

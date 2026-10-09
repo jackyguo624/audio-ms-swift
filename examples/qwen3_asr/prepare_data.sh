@@ -23,7 +23,7 @@ fi
 limit=()
 if [[ -n ${LIMIT:-} ]]; then limit=(--limit "$LIMIT"); fi
 
-exec uv run --project "$REPO_ROOT" --locked --extra qwen3-asr audio-swift prepare-data \
+exec uv run --project "$REPO_ROOT" --locked audio-swift prepare-data \
     --input "$input" --output "$output" \
     --prompt '<audio>' \
     --response-prefix "language ${ASR_LANGUAGE:-Chinese}<asr_text>" \

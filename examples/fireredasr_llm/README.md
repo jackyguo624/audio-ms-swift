@@ -7,12 +7,12 @@
 在项目根目录安装 Python 依赖并准备固定版本的官方源码：
 
 ```bash
-uv sync --locked --extra fireredasr
+uv sync --locked
 bash examples/fireredasr_llm/prepare_source.sh
 export FIRERED_ASR_REPO="$PWD/.vendor/FireRedASR"
 ```
 
-源码固定到 [`834635e4cf277ed8ca92049fc375b17c3dc20748`](https://github.com/FireRedTeam/FireRedASR/tree/834635e4cf277ed8ca92049fc375b17c3dc20748)。也可将 `FIRERED_ASR_REPO` 指向这个提交的已有源码目录；目录下须包含 `fireredasr` 包。Python 依赖由 uv 的 `fireredasr` extra 管理，避免再用上游 requirements 改写已锁定环境。
+默认安装同时包含本项目 Qwen3-ASR 与 FireRedASR-LLM 的 Python 依赖，Swift 引擎固定为 PyPI 发布版本 [`ms-swift==4.5.3`](https://pypi.org/project/ms-swift/4.5.3/)。独立的 FireRed 官方源码固定到 [`834635e4cf277ed8ca92049fc375b17c3dc20748`](https://github.com/FireRedTeam/FireRedASR/tree/834635e4cf277ed8ca92049fc375b17c3dc20748)。也可将 `FIRERED_ASR_REPO` 指向这个提交的已有源码目录；目录下须包含 `fireredasr` 包。Python 依赖统一由 uv 管理，避免再用上游 requirements 改写已锁定环境。
 
 ## 模型布局
 

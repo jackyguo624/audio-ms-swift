@@ -7,10 +7,10 @@
 在项目根目录运行：
 
 ```bash
-uv sync --locked --extra qwen3-asr
+uv sync --locked
 ```
 
-需要 Python 3.11 和 CUDA GPU。默认 BF16 与 SDPA；安装兼容的 FlashAttention 后可设置 `ATTN_IMPL=flash_attention_2`。
+默认安装同时包含本项目 Qwen3-ASR 与 FireRedASR-LLM 的 Python 依赖，引擎固定为 PyPI 发布版本 [`ms-swift==4.5.3`](https://pypi.org/project/ms-swift/4.5.3/)。需要 Python 3.11 和 CUDA GPU。默认 BF16 与 SDPA；安装兼容的 FlashAttention 后可设置 `ATTN_IMPL=flash_attention_2`。
 
 ## 准备数据
 

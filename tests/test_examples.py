@@ -54,7 +54,9 @@ def example_environment(tmp_path):
 def invoke(script, args, cwd, env):
     result = subprocess.run(["bash", str(script), *args], cwd=cwd, env=env, capture_output=True, text=True)
     assert result.returncode == 0, result.stderr
-    return json.loads(result.stdout)
+    payload = json.loads(result.stdout)
+    assert "--extra" not in payload["argv"] and "--all-extras" not in payload["argv"]
+    return payload
 
 
 def option(arguments, name):
@@ -87,6 +89,8 @@ def test_sft_examples_declare_native_configuration(example_environment, example,
     assert option(native, "--gradient_accumulation_steps") == "3"
     assert option(native, "--learning_rate") == "2e-5"
     assert option(native, "--split_dataset_ratio") == "0"
+    assert option(native, "--dataloader_num_workers") == "0"
+    assert option(native, "--dataloader_persistent_workers") == "false"
     assert native[-2:] == ["--run_name", "a b;$(literal)"]
     if example == "fireredasr_llm":
         assert option(native, "--external_plugins") == str(script.with_name("plugin.py"))

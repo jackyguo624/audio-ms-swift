@@ -8,8 +8,9 @@ ms-swift project:
 https://github.com/modelscope/ms-swift
 Copyright (c) ModelScope Contributors. All rights reserved.
 
-ms-swift is installed as an external training-engine dependency, pinned to:
-410a5d18930725d1d3cfe3acdd611eb9795c403b
+ms-swift is installed as an external training-engine dependency from the
+published PyPI release ms-swift==4.5.3:
+https://pypi.org/project/ms-swift/4.5.3/
 Its upstream license and notices remain applicable to that dependency.
 
 FireRedASR model and feature implementations are supplied as a separate,

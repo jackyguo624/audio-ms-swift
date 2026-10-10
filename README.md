@@ -107,6 +107,12 @@ LoRA / Trainer / DDP / checkpoint             ms-swift 依赖
 
 纯模型与音频处理模块不依赖 Swift；模型注册集中在可选 plugin 中。FireRed 示例通过 `--external_plugins` 显式加载自己的 plugin，Qwen3-ASR 使用 Swift 现有模型支持。项目结构和后续扩展约束见 [架构说明](docs/architecture.md)。版权与来源见 [NOTICE](NOTICE) 和 [LICENSE](LICENSE)。
 
+## 全量训练与测试
+
+两套模型均已在单张 A800 80GB 上，分别使用 AISHELL-1 全部 120,098 条训练数据和 LibriSpeech 100+360+500 全部 281,241 条训练数据完成 1 epoch SFT，并在对应完整官方测试集上评测。
+
+训练配置、CER/WER、实际 LoRA 参数及评分规范见 [全量实验记录](docs/asr-benchmark-20261010.md)，精确错误计数与工件哈希见 [机器可读结果](docs/asr-benchmark-20261010.json)。tiny 示例用于快速检查环境；上述性能来自全量实验。
+
 ## 开发验证
 
 安装完整依赖并准备固定的 FireRed 源码后，可运行：

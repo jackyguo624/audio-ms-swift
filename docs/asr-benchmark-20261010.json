@@ -1,0 +1,543 @@
+{
+  "date": "2026-10-10",
+  "status": "passed",
+  "experiments_passed": 4,
+  "training_source_commit": "4d032cc69910ef4184ffd36b0577dc2582d046b2",
+  "hardware": {
+    "gpu": "NVIDIA A800-SXM4-80GB",
+    "gpus_per_experiment": 1
+  },
+  "engine": {
+    "package": "ms-swift",
+    "version": "4.5.3",
+    "source": "PyPI"
+  },
+  "epochs": 1,
+  "effective_batch_size": 16,
+  "baseline_included": false,
+  "artifacts_directory": "output/asr_benchmark_20261010",
+  "reference_provenance": {
+    "AISHELL/AISHELL-1": {
+      "revision": "bbe295d530192a4cd41644b711c9aecd087df653",
+      "url": "https://huggingface.co/datasets/AISHELL/AISHELL-1"
+    },
+    "openslr/librispeech_asr": {
+      "revision": "71cacbfb7e2354c4226d01e70d77d5fca3d04ba1",
+      "url": "https://huggingface.co/datasets/openslr/librispeech_asr"
+    }
+  },
+  "scripts_sha256": {
+    "prepare_corpora.py": "1936abe0e3980cb05d8e2e7679f13a6aa62b441ad34a10ee7ef4814a312c4501",
+    "normalize_training.py": "37f2d700dea471ba97274a8e291b0118807cef4a815bb5b8c9e7647b3e644956",
+    "verify_training.py": "bdd1acfcb7d53f50c7c7c6663df915d3e0786159908d98938cfe8c90ddee7bdb",
+    "firered_decode.py": "4db3f94567ba863210e89abcf83407945662bf968cea825a8d6269b647eb2899",
+    "qwen_decode.py": "c06867b73f56d85a2dd6fc732ce6224913a9d09c01e2d7c073d7d665e293503f",
+    "score.py": "b1bc692c138d645dfa80c8636713ae5c9588462610fa9de9765aaba6e5beef08"
+  },
+  "bash_sha256": {
+    "run_experiment.sh": "71f699c43db9ba0e7d9b4c87b94ed256713cc564381d269186ed5fa09329aacb",
+    "canary.sh": "cf9cba650cb4878e0b091c864fb736505696c030cff60317fe1e772becd7ff03",
+    "environment.sh": "15eefcd6fcbd65956d2eba5948a9749200a558f98766d72b0f773f48054917b0",
+    "capacity.sh": "6e09a2fa061f34a45802908f28e9165074ba3424142d0abfb5068e1c476e7da8",
+    "evaluate_completed.sh": "81c2f4380d5f3afc85383e572fdb9fc5f2f4e35ad1f0332ea0d66f7de13c3850"
+  },
+  "datasets": {
+    "aishell-1": {
+      "train": {
+        "count": 120098,
+        "hours": 150.69291944444527,
+        "manifest_sha256": "f68c8e42a939e438c254068800d30df5abc2fd0fb68f1d2444659f6772e7909b"
+      },
+      "dev": {
+        "count": 14326,
+        "hours": 18.070211111111075,
+        "manifest_sha256": "e9bc55b294f9540ff17da9d7133c4a7c4ff45ef46d6741da0adff79004bffd76"
+      },
+      "test": {
+        "count": 7176,
+        "hours": 10.020911111111154,
+        "manifest_sha256": "f5845d431dab5fa109b2f5c3088a8a6ad2b842d6f9f6ec7b6d2cd14895ced8f7"
+      }
+    },
+    "librispeech": {
+      "train-clean-100": {
+        "count": 28539,
+        "hours": 100.59073555555568,
+        "manifest_sha256": "8092cf06e14e4db6984b95772fb6accfef8b576b0c9c672cb0f5ad50572ad38b"
+      },
+      "train-clean-360": {
+        "count": 104014,
+        "hours": 363.6050391666686,
+        "manifest_sha256": "6e8083a842e2f7bb3735183d14fd87bbc1f2cc9f00ca23f7cf13042adc2dfefa"
+      },
+      "train-other-500": {
+        "count": 148688,
+        "hours": 496.8571344444479,
+        "manifest_sha256": "23ab927a0781d4f9ee17caa7317430af9dbbe40022186fb56bad93ea1e48a8ee"
+      },
+      "dev-clean": {
+        "count": 2703,
+        "hours": 5.387801111111113,
+        "manifest_sha256": "ab01c3bd2f80c0d624513802cdee26363f7a02e8a89629c3a746163e5c48bc00"
+      },
+      "dev-other": {
+        "count": 2864,
+        "hours": 5.121171666666666,
+        "manifest_sha256": "e9a28fb1a429a1a1243fd58dd55a3c0fd5d5f69fcb99cbae262d79398d497381"
+      },
+      "test-clean": {
+        "count": 2620,
+        "hours": 5.403466840277786,
+        "manifest_sha256": "6b4d07ecdda81fc953dca3536a54bcd68a61da2a70f688b381ccff91007ad32c"
+      },
+      "test-other": {
+        "count": 2939,
+        "hours": 5.341547256944456,
+        "manifest_sha256": "4e26d011da24567a7f387c7e8b02c6d931eec40d1c7693dbb78c784f4f17c4f3"
+      }
+    }
+  },
+  "experiments": [
+    {
+      "case": "qwen3_asr_aishell",
+      "model": "Qwen3-ASR-0.6B",
+      "corpus": "aishell",
+      "status": "passed",
+      "training_job_id": "job-179159971081191122276-jiaqi-guo",
+      "evaluation_job_id": "job-179159971081191122276-jiaqi-guo",
+      "training": {
+        "raw_samples": 120098,
+        "prepared_samples": 120098,
+        "optimizer_steps": 7507,
+        "epoch": 1.0,
+        "checkpoint": "output/asr_benchmark_20261010/experiments/qwen3_asr_aishell/checkpoints/checkpoint-7507",
+        "manifest_sha256": "f68c8e42a939e438c254068800d30df5abc2fd0fb68f1d2444659f6772e7909b",
+        "effective_batch_size": 16,
+        "configuration": {
+          "learning_rate": 0.0001,
+          "vit_lr": null,
+          "aligner_lr": null,
+          "warmup_ratio": 0.05,
+          "weight_decay": 0.1,
+          "lr_scheduler_type": "cosine",
+          "seed": 20261010,
+          "data_seed": 20261010,
+          "torch_dtype": "bfloat16",
+          "attn_impl": "sdpa",
+          "per_device_train_batch_size": 16,
+          "gradient_accumulation_steps": 1,
+          "gradient_checkpointing": false,
+          "max_length": 2048,
+          "strict": true,
+          "dataloader_drop_last": false
+        },
+        "actual_lora": {
+          "r": 8,
+          "lora_alpha": 32.0,
+          "lora_dropout": 0.05,
+          "target_modules": "^(thinker\\.model(?=\\.).*\\.(k_proj|q_proj|down_proj|v_proj|gate_proj|o_proj|up_proj))$"
+        },
+        "audio_encoder_and_projector": "frozen",
+        "checkpoint_sha256": {
+          "adapter_config.json": "6e2c1f161c7ce939ad1186fbbb5e05e5bf9fee9f5aa5baabd76529072b2379ff",
+          "adapter_model.safetensors": "9b564a2992b4b50d84f8ab10e724a3e89a5f98ad92937c3f96ce8d1b10234a0d"
+        }
+      },
+      "tests": [
+        {
+          "split": "test",
+          "metric": "cer",
+          "utterances": 7176,
+          "error_rate_percent": 1.665632606309359,
+          "reference_units": 104765,
+          "S": 1605,
+          "D": 70,
+          "I": 70,
+          "errors": 1745,
+          "truncated_samples": 0,
+          "normalization": {
+            "method": "NFKC + lowercase + remove Unicode punctuation (category P*) and whitespace",
+            "applied_to": "reference and hypothesis",
+            "inverse_text_normalization": false,
+            "symbols": "retained"
+          },
+          "aggregation": "corpus micro-average: 100 * sum(S + D + I) / sum(reference units)",
+          "manifest_sha256": "f5845d431dab5fa109b2f5c3088a8a6ad2b842d6f9f6ec7b6d2cd14895ced8f7",
+          "predictions_sha256": "58dfd792fc4cdfc6d58e05821c56ad6a1da5bbaad2acee24d188aaad52edc10f",
+          "generation": {
+            "max_new_tokens": 512,
+            "do_sample": false,
+            "num_beams": 1,
+            "num_return_sequences": 1,
+            "temperature": null,
+            "top_p": null,
+            "top_k": null,
+            "repetition_penalty": 1.0,
+            "use_cache": true,
+            "eos_token_id": [
+              151645,
+              151643
+            ]
+          },
+          "max_new_tokens": 512,
+          "decoder_sha256": "c06867b73f56d85a2dd6fc732ce6224913a9d09c01e2d7c073d7d665e293503f",
+          "decode_batch_size": 16
+        }
+      ]
+    },
+    {
+      "case": "qwen3_asr_librispeech",
+      "model": "Qwen3-ASR-0.6B",
+      "corpus": "librispeech",
+      "status": "passed",
+      "training_job_id": "job-179160013229101599576-jiaqi-guo",
+      "evaluation_job_id": "job-179160013229101599576-jiaqi-guo",
+      "training": {
+        "raw_samples": 281241,
+        "prepared_samples": 281241,
+        "optimizer_steps": 17578,
+        "epoch": 1.0,
+        "checkpoint": "output/asr_benchmark_20261010/experiments/qwen3_asr_librispeech/checkpoints/checkpoint-17578",
+        "manifest_sha256": "7a276e23b330ce0247f055e3b137ac788652a8e048f3e26ec53424b358a7ff31",
+        "effective_batch_size": 16,
+        "configuration": {
+          "learning_rate": 0.0001,
+          "vit_lr": null,
+          "aligner_lr": null,
+          "warmup_ratio": 0.05,
+          "weight_decay": 0.1,
+          "lr_scheduler_type": "cosine",
+          "seed": 20261010,
+          "data_seed": 20261010,
+          "torch_dtype": "bfloat16",
+          "attn_impl": "sdpa",
+          "per_device_train_batch_size": 16,
+          "gradient_accumulation_steps": 1,
+          "gradient_checkpointing": false,
+          "max_length": 2048,
+          "strict": true,
+          "dataloader_drop_last": false
+        },
+        "actual_lora": {
+          "r": 8,
+          "lora_alpha": 32.0,
+          "lora_dropout": 0.05,
+          "target_modules": "^(thinker\\.model(?=\\.).*\\.(v_proj|q_proj|o_proj|down_proj|k_proj|up_proj|gate_proj))$"
+        },
+        "audio_encoder_and_projector": "frozen",
+        "checkpoint_sha256": {
+          "adapter_config.json": "2ee02dbbf79bef6c2703d28442a26a884ad2d296f59dfb034ff66eab8f9667e2",
+          "adapter_model.safetensors": "edba804e0d3320b6a4a6461a6d9ddcef7f5ba44c48698e6112f5b25461b71058"
+        }
+      },
+      "tests": [
+        {
+          "split": "test-clean",
+          "metric": "wer",
+          "utterances": 2620,
+          "error_rate_percent": 1.9970958191110189,
+          "reference_units": 53027,
+          "S": 822,
+          "D": 94,
+          "I": 143,
+          "errors": 1059,
+          "truncated_samples": 0,
+          "normalization": {
+            "method": "transformers.models.whisper.english_normalizer.EnglishTextNormalizer({})",
+            "transformers_version": "4.57.6",
+            "english_spelling_mapping": {},
+            "applied_to": "reference and hypothesis",
+            "inverse_text_normalization": "included in upstream EnglishTextNormalizer"
+          },
+          "aggregation": "corpus micro-average: 100 * sum(S + D + I) / sum(reference units)",
+          "manifest_sha256": "6b4d07ecdda81fc953dca3536a54bcd68a61da2a70f688b381ccff91007ad32c",
+          "predictions_sha256": "98c4635012d4bfe188e35247332e86c5f2f23a385da337c8d077d15128546a5a",
+          "generation": {
+            "max_new_tokens": 512,
+            "do_sample": false,
+            "num_beams": 1,
+            "num_return_sequences": 1,
+            "temperature": null,
+            "top_p": null,
+            "top_k": null,
+            "repetition_penalty": 1.0,
+            "use_cache": true,
+            "eos_token_id": [
+              151645,
+              151643
+            ]
+          },
+          "max_new_tokens": 512,
+          "decoder_sha256": "c06867b73f56d85a2dd6fc732ce6224913a9d09c01e2d7c073d7d665e293503f",
+          "decode_batch_size": 16
+        },
+        {
+          "split": "test-other",
+          "metric": "wer",
+          "utterances": 2939,
+          "error_rate_percent": 4.424946106425627,
+          "reference_units": 52882,
+          "S": 1864,
+          "D": 171,
+          "I": 305,
+          "errors": 2340,
+          "truncated_samples": 0,
+          "normalization": {
+            "method": "transformers.models.whisper.english_normalizer.EnglishTextNormalizer({})",
+            "transformers_version": "4.57.6",
+            "english_spelling_mapping": {},
+            "applied_to": "reference and hypothesis",
+            "inverse_text_normalization": "included in upstream EnglishTextNormalizer"
+          },
+          "aggregation": "corpus micro-average: 100 * sum(S + D + I) / sum(reference units)",
+          "manifest_sha256": "4e26d011da24567a7f387c7e8b02c6d931eec40d1c7693dbb78c784f4f17c4f3",
+          "predictions_sha256": "07a85613c941cb95e82859310b9721163c8a36f00a19ac97eda59a1c3e442d1e",
+          "generation": {
+            "max_new_tokens": 512,
+            "do_sample": false,
+            "num_beams": 1,
+            "num_return_sequences": 1,
+            "temperature": null,
+            "top_p": null,
+            "top_k": null,
+            "repetition_penalty": 1.0,
+            "use_cache": true,
+            "eos_token_id": [
+              151645,
+              151643
+            ]
+          },
+          "max_new_tokens": 512,
+          "decoder_sha256": "c06867b73f56d85a2dd6fc732ce6224913a9d09c01e2d7c073d7d665e293503f",
+          "decode_batch_size": 16
+        }
+      ]
+    },
+    {
+      "case": "fireredasr_llm_aishell",
+      "model": "FireRedASR-LLM-L",
+      "corpus": "aishell",
+      "status": "passed",
+      "training_job_id": "job-179159971179774561452-jiaqi-guo",
+      "evaluation_job_id": "job-179160945367053552396-jiaqi-guo",
+      "training": {
+        "raw_samples": 120098,
+        "prepared_samples": 120098,
+        "optimizer_steps": 7507,
+        "epoch": 1.0,
+        "checkpoint": "output/asr_benchmark_20261010/experiments/fireredasr_llm_aishell/checkpoints/checkpoint-7507",
+        "manifest_sha256": "f68c8e42a939e438c254068800d30df5abc2fd0fb68f1d2444659f6772e7909b",
+        "effective_batch_size": 16,
+        "configuration": {
+          "learning_rate": 0.0001,
+          "vit_lr": 1e-05,
+          "aligner_lr": 1e-05,
+          "warmup_ratio": 0.05,
+          "weight_decay": 0.1,
+          "lr_scheduler_type": "cosine",
+          "seed": 20261010,
+          "data_seed": 20261010,
+          "torch_dtype": "bfloat16",
+          "attn_impl": "sdpa",
+          "per_device_train_batch_size": 8,
+          "gradient_accumulation_steps": 2,
+          "gradient_checkpointing": true,
+          "max_length": 2048,
+          "strict": true,
+          "dataloader_drop_last": false
+        },
+        "actual_lora": {
+          "r": 8,
+          "lora_alpha": 32.0,
+          "lora_dropout": 0.0,
+          "target_modules": "^(firered_model\\.llm\\.model(?=\\.).*\\.(down_proj|gate_proj|v_proj|q_proj|up_proj|o_proj|k_proj))$"
+        },
+        "audio_encoder_and_projector": "full training",
+        "checkpoint_sha256": {
+          "adapter_config.json": "9739cea69e39ca2fbc85b3a3f3604defbc16be9961cf3433170b07b181657e71",
+          "adapter_model.safetensors": "581a197c36988259b89ad936a538ff2ce19974160e982b2840f3c10bd19afe87",
+          "vit.safetensors": "7bb35e4ffdecb39f63ca655af4f1e7ac8004383b2b3ff39c7064cd0d2c547e22"
+        }
+      },
+      "tests": [
+        {
+          "split": "test",
+          "metric": "cer",
+          "utterances": 7176,
+          "error_rate_percent": 0.8113396649644442,
+          "reference_units": 104765,
+          "S": 733,
+          "D": 58,
+          "I": 59,
+          "errors": 850,
+          "truncated_samples": 0,
+          "normalization": {
+            "method": "NFKC + lowercase + remove Unicode punctuation (category P*) and whitespace",
+            "applied_to": "reference and hypothesis",
+            "inverse_text_normalization": false,
+            "symbols": "retained"
+          },
+          "aggregation": "corpus micro-average: 100 * sum(S + D + I) / sum(reference units)",
+          "manifest_sha256": "f5845d431dab5fa109b2f5c3088a8a6ad2b842d6f9f6ec7b6d2cd14895ced8f7",
+          "predictions_sha256": "912faacb48280ce5c51835c2a0282c8182851df95338bab709a15c1c893dded3",
+          "generation": {
+            "do_sample": false,
+            "num_beams": 1,
+            "repetition_penalty": 1.0,
+            "use_cache": true
+          },
+          "max_new_tokens": 512,
+          "decoder_sha256": "4db3f94567ba863210e89abcf83407945662bf968cea825a8d6269b647eb2899",
+          "decode_batch_size": 16,
+          "checkpoint_verification": {
+            "actual_llm_attn_implementation": "sdpa",
+            "official_lora_merged": true,
+            "sft_adapter_loaded": true,
+            "vit_checked_parameters": 554
+          }
+        }
+      ]
+    },
+    {
+      "case": "fireredasr_llm_librispeech",
+      "model": "FireRedASR-LLM-L",
+      "corpus": "librispeech",
+      "status": "passed",
+      "training_job_id": "job-179160013378649064262-jiaqi-guo",
+      "evaluation_job_id": "job-179160013378649064262-jiaqi-guo",
+      "training": {
+        "raw_samples": 281241,
+        "prepared_samples": 281241,
+        "optimizer_steps": 17578,
+        "epoch": 1.0,
+        "checkpoint": "output/asr_benchmark_20261010/experiments/fireredasr_llm_librispeech/checkpoints/checkpoint-17578",
+        "manifest_sha256": "7a276e23b330ce0247f055e3b137ac788652a8e048f3e26ec53424b358a7ff31",
+        "effective_batch_size": 16,
+        "configuration": {
+          "learning_rate": 0.0001,
+          "vit_lr": 1e-05,
+          "aligner_lr": 1e-05,
+          "warmup_ratio": 0.05,
+          "weight_decay": 0.1,
+          "lr_scheduler_type": "cosine",
+          "seed": 20261010,
+          "data_seed": 20261010,
+          "torch_dtype": "bfloat16",
+          "attn_impl": "sdpa",
+          "per_device_train_batch_size": 8,
+          "gradient_accumulation_steps": 2,
+          "gradient_checkpointing": true,
+          "max_length": 2048,
+          "strict": true,
+          "dataloader_drop_last": false
+        },
+        "actual_lora": {
+          "r": 8,
+          "lora_alpha": 32.0,
+          "lora_dropout": 0.0,
+          "target_modules": "^(firered_model\\.llm\\.model(?=\\.).*\\.(down_proj|k_proj|v_proj|q_proj|o_proj|up_proj|gate_proj))$"
+        },
+        "audio_encoder_and_projector": "full training",
+        "checkpoint_sha256": {
+          "adapter_config.json": "d75111eae7e7a4f77da1e39431fbb68050b6f990a4cd2e4ac49c1fc7061be026",
+          "adapter_model.safetensors": "6db0eb1d4e765bd2b11a405c405873918fee590884873e4f569dcd1344c3ebfe",
+          "vit.safetensors": "ffb36af9947d9da8e325a3e037378e446d9fbb14bc5bf214bfcf61a81d466e81"
+        }
+      },
+      "tests": [
+        {
+          "split": "test-clean",
+          "metric": "wer",
+          "utterances": 2620,
+          "error_rate_percent": 1.5878703302091388,
+          "reference_units": 53027,
+          "S": 644,
+          "D": 80,
+          "I": 118,
+          "errors": 842,
+          "truncated_samples": 0,
+          "normalization": {
+            "method": "transformers.models.whisper.english_normalizer.EnglishTextNormalizer({})",
+            "transformers_version": "4.57.6",
+            "english_spelling_mapping": {},
+            "applied_to": "reference and hypothesis",
+            "inverse_text_normalization": "included in upstream EnglishTextNormalizer"
+          },
+          "aggregation": "corpus micro-average: 100 * sum(S + D + I) / sum(reference units)",
+          "manifest_sha256": "6b4d07ecdda81fc953dca3536a54bcd68a61da2a70f688b381ccff91007ad32c",
+          "predictions_sha256": "2c784a024c276a66de00057088ee2495318f2e852403e1186a1340868ab811a3",
+          "generation": {
+            "do_sample": false,
+            "num_beams": 1,
+            "repetition_penalty": 1.0,
+            "use_cache": true
+          },
+          "max_new_tokens": 512,
+          "decoder_sha256": "4db3f94567ba863210e89abcf83407945662bf968cea825a8d6269b647eb2899",
+          "decode_batch_size": 16,
+          "checkpoint_verification": {
+            "actual_llm_attn_implementation": "sdpa",
+            "official_lora_merged": true,
+            "sft_adapter_loaded": true,
+            "vit_checked_parameters": 554
+          }
+        },
+        {
+          "split": "test-other",
+          "metric": "wer",
+          "utterances": 2939,
+          "error_rate_percent": 3.5361748799213344,
+          "reference_units": 52882,
+          "S": 1493,
+          "D": 148,
+          "I": 229,
+          "errors": 1870,
+          "truncated_samples": 0,
+          "normalization": {
+            "method": "transformers.models.whisper.english_normalizer.EnglishTextNormalizer({})",
+            "transformers_version": "4.57.6",
+            "english_spelling_mapping": {},
+            "applied_to": "reference and hypothesis",
+            "inverse_text_normalization": "included in upstream EnglishTextNormalizer"
+          },
+          "aggregation": "corpus micro-average: 100 * sum(S + D + I) / sum(reference units)",
+          "manifest_sha256": "4e26d011da24567a7f387c7e8b02c6d931eec40d1c7693dbb78c784f4f17c4f3",
+          "predictions_sha256": "39e46e59ce017723efeb408d9b7740966920425ebbeccd9c29a0cffdc7824f55",
+          "generation": {
+            "do_sample": false,
+            "num_beams": 1,
+            "repetition_penalty": 1.0,
+            "use_cache": true
+          },
+          "max_new_tokens": 512,
+          "decoder_sha256": "4db3f94567ba863210e89abcf83407945662bf968cea825a8d6269b647eb2899",
+          "decode_batch_size": 16,
+          "checkpoint_verification": {
+            "actual_llm_attn_implementation": "sdpa",
+            "official_lora_merged": true,
+            "sft_adapter_loaded": true,
+            "vit_checked_parameters": 554
+          }
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "full_training_counts_and_epoch": "passed",
+    "official_test_ids_and_raw_references": "passed",
+    "manifest_predictions_adapter_and_driver_hashes": "passed",
+    "independent_per_utterance_dynamic_programming_rescore": "passed",
+    "gpu_inference_repeated_by_auditor": false,
+    "all_base_weight_and_wav_content_hashes_checked": false
+  },
+  "evaluation_recovery": {
+    "created_at_utc": "2026-10-10T05:17:26.713432+00:00",
+    "case": "fireredasr_llm_aishell",
+    "original_training_job_id": "job-179159971179774561452-jiaqi-guo",
+    "training_reused": true,
+    "reason": "Fresh decode with --resume previously rejected absent output/metadata; allow both absent, retaining strict partial/existing checks.",
+    "decoder_sha256": "4db3f94567ba863210e89abcf83407945662bf968cea825a8d6269b647eb2899",
+    "regression_tests_passed": 11,
+    "evaluation_job_id": "job-179160945367053552396-jiaqi-guo"
+  }
+}

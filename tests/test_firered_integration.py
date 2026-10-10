@@ -160,7 +160,8 @@ def tiny_firered(tmp_path, monkeypatch):
 
 
 @pytest.mark.integration
-def test_firered_audio_sft_and_lora_restore(tiny_firered, tmp_path):
+@pytest.mark.parametrize("attn_impl", ["eager", "sdpa"])
+def test_firered_audio_sft_and_lora_restore(tiny_firered, tmp_path, attn_impl):
     from fireredasr.data.asr_feat import ASRFeatExtractor
     from peft import PeftModel
     from swift.model import get_model_processor
@@ -185,10 +186,11 @@ def test_firered_audio_sft_and_lora_restore(tiny_firered, tmp_path):
         model_type="fireredasr_llm",
         torch_dtype=torch.float32,
         device_map="cpu",
-        attn_impl="eager",
+        attn_impl=attn_impl,
     )
     assert isinstance(model, FireRedASRLLMForCausalLM)
     assert not isinstance(model.firered_model.llm, PeftModel), "Pretrained LoRA must be merged before fresh SFT."
+    assert model.firered_model.llm.config._attn_implementation == attn_impl
     with pytest.raises(NotImplementedError, match="adapter"):
         model.save_pretrained(tmp_path / "unsupported-full-checkpoint")
     template = get_template(
@@ -238,9 +240,10 @@ def test_firered_audio_sft_and_lora_restore(tiny_firered, tmp_path):
         model_type="fireredasr_llm",
         torch_dtype=torch.float32,
         device_map="cpu",
-        attn_impl="eager",
+        attn_impl=attn_impl,
     )
     assert isinstance(base, FireRedASRLLMForCausalLM)
+    assert base.firered_model.llm.config._attn_implementation == attn_impl
     restored = LoRALLMTuner.from_pretrained(base, str(checkpoint))
     assert torch.isfinite(restored(**batch).loss)
 

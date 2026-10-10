@@ -141,4 +141,4 @@ bash examples/fireredasr_llm/sft.sh \
     /models/FireRedASR-LLM-L data/fireredasr_llm/train.jsonl
 ```
 
-模板使用普通 padding，保持 `packing=false`、`padding_free=false` 和 `truncation_strategy=delete`。当前不覆盖量化、自动跨卡切分、Megatron 或推理。FlashAttention 路径依赖上游实现及硬件，默认的 eager/BF16 路径不需要安装 flash-attn。
+模板使用普通 padding，保持 `packing=false`、`padding_free=false` 和 `truncation_strategy=delete`。当前不覆盖量化、自动跨卡切分、Megatron 或推理。可设置 `ATTN_IMPL=sdpa` 使用 PyTorch SDPA。FlashAttention 路径依赖上游实现及硬件，默认的 eager/BF16 路径不需要安装 flash-attn。

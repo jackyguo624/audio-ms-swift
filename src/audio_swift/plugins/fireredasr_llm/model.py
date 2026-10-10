@@ -149,8 +149,8 @@ def build_model(model_dir, tokenizer, *, torch_dtype=None, device=None, attn_imp
     encoder_path = Path(model_dir) / "asr_encoder.pth.tar"
     if not encoder_path.is_file():
         raise FileNotFoundError(f"Missing FireRedASR encoder checkpoint: {encoder_path}")
-    if attn_impl not in (None, "eager", "flash_attn", "flash_attention_2"):
-        raise ValueError("FireRedASR supports attn_impl=eager or flash_attention_2.")
+    if attn_impl not in (None, "eager", "sdpa", "flash_attn", "flash_attention_2"):
+        raise ValueError("FireRedASR supports attn_impl=eager, sdpa or flash_attention_2.")
     if device == "auto" or isinstance(device, dict):
         raise ValueError("Use one device per process; device_map=auto/dict is unsupported.")
     package = load_model_package(model_dir)
@@ -171,6 +171,13 @@ def build_model(model_dir, tokenizer, *, torch_dtype=None, device=None, attn_imp
     if hasattr(native.llm, "merge_and_unload"):
         native.llm = native.llm.merge_and_unload()
     model = FireRedASRLLMForCausalLM(native)
+    # Upstream from_args only distinguishes FlashAttention from eager. Apply
+    # the requested Qwen backend after merging its pretrained adapter; the
+    # wrapper shares this config and delegates all LLM attention to Qwen.
+    requested_attn_impl = "flash_attention_2" if attn_impl == "flash_attn" else (attn_impl or "eager")
+    native.llm.set_attn_implementation(requested_attn_impl)
+    if native.llm.config._attn_implementation != requested_attn_impl:
+        raise ValueError(f"FireRedASR LLM did not apply attn_impl={requested_attn_impl}.")
     if torch_dtype is not None:
         cast(torch.nn.Module, model).to(dtype=torch_dtype)
     if device is not None:

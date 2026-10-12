@@ -54,3 +54,5 @@ FireRed AISHELL 的首次测试因 fresh `--resume` 状态判断失败；修复�
 原始权重的任务记录、逐句预测、评分及独立配对审核保存在本地 `output/asr_benchmark_20261010/baseline_20261012/`；对应计数、哈希、对比公式和全精度指标同步到上述 JSON。
 
 FireRed AISHELL-1 的逐句退化分析见 [case 分析](firered-aishell-case-analysis-20261012.md)：105 句错误增加、72 句减少，净多 46 个字错误，主要净变化是替换 +44。报告区分了内容变化、书写/参考敏感 case，并给出配对说话人重采样结果。
+
+进一步的 [退化原因分析](firered-aishell-regression-causes-20261012.md)补做两组完整测试的组件替换：原始 804 错，LLM-only 849，audio-only 812，完整 SFT 850。固定 checkpoint 下的退化主要随 LLM LoRA 替换复现，训练机制与超参数原因仍需受控对照。

@@ -1,0 +1,1104 @@
+{
+  "date": "2026-10-12",
+  "status": "passed",
+  "model": "FireRedASR-LLM-L",
+  "corpus": "AISHELL-1 full official test",
+  "analysis_source_commit": "b188986d8041ed40ae554efa717c61524c6d856e",
+  "training_source_commit": "4d032cc69910ef4184ffd36b0577dc2582d046b2",
+  "new_inference_experiments": 2,
+  "new_training_runs": 0,
+  "official_test_samples": 7176,
+  "reference_chars": 104765,
+  "grid": {
+    "original": {
+      "utterances": 7176,
+      "ref_units": 104765,
+      "S": 689,
+      "D": 60,
+      "I": 55,
+      "errors": 804,
+      "error_rate_percent": 0.7674318713310743
+    },
+    "llm_only": {
+      "utterances": 7176,
+      "ref_units": 104765,
+      "S": 732,
+      "D": 56,
+      "I": 61,
+      "errors": 849,
+      "error_rate_percent": 0.8103851477115449
+    },
+    "audio_only": {
+      "utterances": 7176,
+      "ref_units": 104765,
+      "S": 703,
+      "D": 59,
+      "I": 50,
+      "errors": 812,
+      "error_rate_percent": 0.7750680093542691
+    },
+    "sft": {
+      "utterances": 7176,
+      "ref_units": 104765,
+      "S": 733,
+      "D": 58,
+      "I": 59,
+      "errors": 850,
+      "error_rate_percent": 0.8113396649644442
+    }
+  },
+  "fixed_weight_effects_errors": {
+    "llm_at_original_audio": 45,
+    "llm_at_sft_audio": 38,
+    "audio_at_original_llm": 8,
+    "audio_at_sft_llm": 1,
+    "interaction": -7
+  },
+  "fixed_weight_effects_cer_percentage_points": {
+    "llm_at_original_audio": 0.04295327638047058,
+    "llm_at_sft_audio": 0.03627165561017515,
+    "audio_at_original_llm": 0.00763613802319477,
+    "audio_at_sft_llm": 0.0009545172528993462,
+    "interaction": -0.006681620770295423
+  },
+  "prediction_agreement_counts": {
+    "llm_only_vs_sft": 7140,
+    "audio_only_vs_original": 7146,
+    "llm_only_vs_sft_on_105_regressions": 96,
+    "audio_only_vs_original_on_105_regressions": 98,
+    "llm_reproduces_sft_audio_preserves_original_on_105_regressions": 89
+  },
+  "original_sft_regression_patterns": {
+    "only_llm_individually_worse": 92,
+    "neither_individually_worse": 6,
+    "both_individually_worse": 7
+  },
+  "module_isolation": {
+    "both_jobs_actual_base_parameter_buffer_fingerprints_identical": true,
+    "base_fingerprints": {
+      "audio": {
+        "bytes": 1490739904,
+        "sha256": "7de5455f25aee19b37e7fa9fb53d8c9029889f26489bd551f26cc630a57cfe86",
+        "tensors": 555
+      },
+      "llm": {
+        "bytes": 15231233152,
+        "sha256": "2d1cad9d94f436d74c62cad932ab56e4cd7647daaa6f0f0d04d2854e8f888e78",
+        "tensors": 340
+      }
+    },
+    "LLM_config_sha256": "c230c45a90186fe924348efc4e31265364a8a4bdcc3f0684bb9d6459ea5ebbd0",
+    "unselected_modules_actual_all_parameters_and_buffers_unchanged": true,
+    "selected_modules_effectively_changed": true,
+    "LLM_only_loaded_LoRA_tensors": 392,
+    "audio_only_loaded_vit_parameters": 554,
+    "full_inference_tensor_fingerprints_recomputed_by_auditor": false,
+    "evidence": "Reviewed complete parameter+buffer hashing implementation and runtime checks; no GPU inference repeated. All checkpoint subset parameters exact-loaded and checks passed.",
+    "CPU_tests": {
+      "reported_passed": 4,
+      "evidence": "Pinned plan and root execution report; source reviewed, not rerun by auditor",
+      "test_source_sha256": "2ddb36759433a1dbec9a9d2c0c4d5ac627a5c57fe4e9e9a9ab50dbafc4ab47df",
+      "coverage": [
+        "Real tiny FireRed/PEFT llm_only and audio_only selected/full-SFT and unselected/original fingerprint equality",
+        "Resume refuses mode or wrapper-version changes",
+        "CLI dispatch hooks reuse and restore the original decoder"
+      ]
+    }
+  },
+  "pairing": {
+    "new_configuration_equals_original_SFT_except": [
+      "component",
+      "component_driver_sha256"
+    ],
+    "same_final_adapter_and_vit_checkpoint": true,
+    "same_original_model_artifact_fingerprint": true,
+    "same_prompt_mask_audio_features_generation_dtype_attention_packages_seed": true,
+    "references_never_enter_generate": "Only loading, parser and metadata identity are hooked; established decoder input/features/mask/generation path is unchanged and receives audio plus fixed prompt, not reference"
+  },
+  "bootstrap": {
+    "unit": "20 complete speaker clusters with replacement, preserving paired counts for all four model combinations",
+    "seed": 20261014,
+    "replicates": 20000,
+    "rng": "numpy.random.default_rng/PCG64",
+    "numpy_version": "1.26.4",
+    "quantile_method": "linear percentile",
+    "contrasts": {
+      "LLM_only_vs_original": {
+        "coefficients": {
+          "B": 1,
+          "A": -1
+        },
+        "point_difference_percentage_points": 0.04295327638047058,
+        "percentile_95_ci_percentage_points": [
+          0.00673075467026892,
+          0.07993715422787769
+        ],
+        "replicates_with_difference_nonpositive_fraction": 0.01095
+      },
+      "audio_only_vs_original": {
+        "coefficients": {
+          "C": 1,
+          "A": -1
+        },
+        "point_difference_percentage_points": 0.00763613802319477,
+        "percentile_95_ci_percentage_points": [
+          -0.004793004515597753,
+          0.022930756044206337
+        ],
+        "replicates_with_difference_nonpositive_fraction": 0.16185
+      },
+      "SFT_vs_LLM_only": {
+        "coefficients": {
+          "D": 1,
+          "B": -1
+        },
+        "point_difference_percentage_points": 0.0009545172528993462,
+        "percentile_95_ci_percentage_points": [
+          -0.008649716749621046,
+          0.010513958116883527
+        ],
+        "replicates_with_difference_nonpositive_fraction": 0.4603
+      },
+      "SFT_vs_audio_only": {
+        "coefficients": {
+          "D": 1,
+          "C": -1
+        },
+        "point_difference_percentage_points": 0.03627165561017515,
+        "percentile_95_ci_percentage_points": [
+          0.001923984829119785,
+          0.07195979187672336
+        ],
+        "replicates_with_difference_nonpositive_fraction": 0.0192
+      },
+      "interaction": {
+        "coefficients": {
+          "D": 1,
+          "B": -1,
+          "C": -1,
+          "A": 1
+        },
+        "point_difference_percentage_points": -0.006681620770295423,
+        "percentile_95_ci_percentage_points": [
+          -0.024984918963328395,
+          0.010585699539845858
+        ],
+        "replicates_with_difference_nonpositive_fraction": 0.7775
+      }
+    },
+    "interpretation": "Held-out speaker-mix resampling sensitivity for fixed checkpoints, not training variance. Nonpositive replicate fractions are not declared p-values."
+  },
+  "representative_cases": [
+    {
+      "id": "BAC009S0913W0309",
+      "reference": "美的将美芝压缩机威灵电机合并",
+      "errors": {
+        "original": 0,
+        "llm_only": 4,
+        "audio_only": 0,
+        "sft": 4
+      },
+      "hypotheses": {
+        "original": "美的将美芝压缩机威灵电机合并",
+        "llm_only": "美的将每只压缩机微零电机合并",
+        "audio_only": "美的将美芝压缩机威灵电机合并",
+        "sft": "美的将每只压缩机微零电机合并"
+      },
+      "deltas_vs_original": {
+        "llm_only": 4,
+        "audio_only": 0,
+        "sft": 4
+      }
+    },
+    {
+      "id": "BAC009S0765W0226",
+      "reference": "不能简单地用寅吃卯粮来作价值判断",
+      "errors": {
+        "original": 1,
+        "llm_only": 4,
+        "audio_only": 1,
+        "sft": 4
+      },
+      "hypotheses": {
+        "original": "不能简单地用寅吃卯粮来做价值判断",
+        "llm_only": "不能简单地用饮鸩饱粮来做价值判断",
+        "audio_only": "不能简单地用寅吃卯粮来做价值判断",
+        "sft": "不能简单地用饮鸩饱粮来做价值判断"
+      },
+      "deltas_vs_original": {
+        "llm_only": 3,
+        "audio_only": 0,
+        "sft": 3
+      }
+    },
+    {
+      "id": "BAC009S0915W0458",
+      "reference": "游客骑着明孝陵驮碑龟趺拍照市民大煞风景",
+      "errors": {
+        "original": 1,
+        "llm_only": 4,
+        "audio_only": 1,
+        "sft": 4
+      },
+      "hypotheses": {
+        "original": "游客骑着明孝陵驮碑龟贴拍照市民大煞风景",
+        "llm_only": "游客骑着明孝陵驮碑龟贴拍照市民大厦封顶",
+        "audio_only": "游客骑着明孝陵驮碑龟贴拍照市民大煞风景",
+        "sft": "游客骑着明孝陵驮碑龟贴拍照市民大厦封顶"
+      },
+      "deltas_vs_original": {
+        "llm_only": 3,
+        "audio_only": 0,
+        "sft": 3
+      }
+    },
+    {
+      "id": "BAC009S0765W0447",
+      "reference": "时年二三岁的杨柱军在北京抢劫杀害了一名出租车司机",
+      "errors": {
+        "original": 0,
+        "llm_only": 1,
+        "audio_only": 0,
+        "sft": 1
+      },
+      "hypotheses": {
+        "original": "时年二三岁的杨柱军在北京抢劫杀害了一名出租车司机",
+        "llm_only": "时年二十三岁的杨柱军在北京抢劫杀害了一名出租车司机",
+        "audio_only": "时年二三岁的杨柱军在北京抢劫杀害了一名出租车司机",
+        "sft": "时年二十三岁的杨柱军在北京抢劫杀害了一名出租车司机"
+      },
+      "deltas_vs_original": {
+        "llm_only": 1,
+        "audio_only": 0,
+        "sft": 1
+      }
+    },
+    {
+      "id": "BAC009S0901W0187",
+      "reference": "农业现代化水平显着提升",
+      "errors": {
+        "original": 0,
+        "llm_only": 1,
+        "audio_only": 0,
+        "sft": 1
+      },
+      "hypotheses": {
+        "original": "农业现代化水平显着提升",
+        "llm_only": "农业现代化水平显著提升",
+        "audio_only": "农业现代化水平显着提升",
+        "sft": "农业现代化水平显著提升"
+      },
+      "deltas_vs_original": {
+        "llm_only": 1,
+        "audio_only": 0,
+        "sft": 1
+      }
+    },
+    {
+      "id": "BAC009S0905W0196",
+      "reference": "引导各地鉴借示范区发展现代农业的好做法和好经验",
+      "errors": {
+        "original": 0,
+        "llm_only": 0,
+        "audio_only": 0,
+        "sft": 2
+      },
+      "hypotheses": {
+        "original": "引导各地鉴借示范区发展现代农业的好做法和好经验",
+        "llm_only": "引导各地鉴借示范区发展现代农业的好做法和好经验",
+        "audio_only": "引导各地鉴借示范区发展现代农业的好做法和好经验",
+        "sft": "引导各地借鉴示范区发展现代农业的好做法和好经验"
+      },
+      "deltas_vs_original": {
+        "llm_only": 0,
+        "audio_only": 0,
+        "sft": 2
+      }
+    },
+    {
+      "id": "BAC009S0905W0453",
+      "reference": "温州网讯在温医大附属育英儿童医院的重监护室里",
+      "errors": {
+        "original": 0,
+        "llm_only": 1,
+        "audio_only": 0,
+        "sft": 1
+      },
+      "hypotheses": {
+        "original": "温州网讯在温医大附属育英儿童医院的重监护室里",
+        "llm_only": "温州网讯在温医大附属育英儿童医院的重症监护室里",
+        "audio_only": "温州网讯在温医大附属育英儿童医院的重监护室里",
+        "sft": "温州网讯在温医大附属育英儿童医院的重症监护室里"
+      },
+      "deltas_vs_original": {
+        "llm_only": 1,
+        "audio_only": 0,
+        "sft": 1
+      }
+    },
+    {
+      "id": "BAC009S0766W0381",
+      "reference": "随后冰迷们自发为其网上募集资金",
+      "errors": {
+        "original": 2,
+        "llm_only": 0,
+        "audio_only": 2,
+        "sft": 0
+      },
+      "hypotheses": {
+        "original": "随后冰迷们自发为其网上募集丝巾",
+        "llm_only": "随后冰迷们自发为其网上募集资金",
+        "audio_only": "随后冰迷们自发为其网上募集丝巾",
+        "sft": "随后冰迷们自发为其网上募集资金"
+      },
+      "deltas_vs_original": {
+        "llm_only": -2,
+        "audio_only": 0,
+        "sft": -2
+      }
+    },
+    {
+      "id": "BAC009S0770W0215",
+      "reference": "城投债劵作为准市政债劵仍将是有效的融资工具",
+      "errors": {
+        "original": 2,
+        "llm_only": 0,
+        "audio_only": 2,
+        "sft": 0
+      },
+      "hypotheses": {
+        "original": "城投债券作为准市政债券仍将是有效的融资工具",
+        "llm_only": "城投债劵作为准市政债劵仍将是有效的融资工具",
+        "audio_only": "城投债券作为准市政债券仍将是有效的融资工具",
+        "sft": "城投债劵作为准市政债劵仍将是有效的融资工具"
+      },
+      "deltas_vs_original": {
+        "llm_only": -2,
+        "audio_only": 0,
+        "sft": -2
+      }
+    },
+    {
+      "id": "BAC009S0769W0187",
+      "reference": "并进而对城投债券进行唱空或做空",
+      "errors": {
+        "original": 0,
+        "llm_only": 1,
+        "audio_only": 0,
+        "sft": 1
+      },
+      "hypotheses": {
+        "original": "并进而对城投债券进行唱空或做空",
+        "llm_only": "并进而对城投债劵进行唱空或做空",
+        "audio_only": "并进而对城投债券进行唱空或做空",
+        "sft": "并进而对城投债劵进行唱空或做空"
+      },
+      "deltas_vs_original": {
+        "llm_only": 1,
+        "audio_only": 0,
+        "sft": 1
+      }
+    }
+  ],
+  "training": {
+    "trainable_parameters": {
+      "total_elements": 752756320,
+      "parts": {
+        "LLM_LoRA": 20185088,
+        "encoder": 710543968,
+        "projector": 22027264
+      },
+      "tensor_counts": {
+        "LLM_LoRA": 392,
+        "encoder": 550,
+        "projector": 4
+      },
+      "saved_weight_dtype_elements": {
+        "LLM_LoRA": {
+          "F32": 20185088
+        },
+        "encoder": {
+          "BF16": 710543968
+        },
+        "projector": {
+          "BF16": 22027264
+        }
+      },
+      "audio_share_percent": 97.31850966060306,
+      "logged_model_parameter_info": "[INFO:swift] model_parameter_info: PeftModelForCausalLM: 8368.3728M Params (752.7563M Trainable [8.9953%]), 12.7988M Buffers."
+    },
+    "effective_regularization": {
+      "new_LLM_LoRA": {
+        "r": 8,
+        "lora_alpha": 32.0,
+        "lora_dropout": 0.0
+      },
+      "args_lora_dropout": 0.05,
+      "encoder_dropout_args": {
+        "residual_dropout": 0.1,
+        "dropout_rate": 0.1
+      },
+      "Qwen_attention_dropout": 0.0,
+      "dropout_interpretation": "Native lora_llm omits lora_dropout when constructing LoraConfig: actual new adapter is 0.0 despite args .05. The entire model is not dropout-free: Conformer residual/feed-forward/convolution paths use .1.",
+      "args_freeze_flags": {
+        "freeze_vit": true,
+        "freeze_aligner": true,
+        "freeze_llm": false
+      },
+      "effective_freezing": "After PEFT freezes the base, native lora_llm explicitly requires_grad_(True) on registered audio encoder/projector. Full audio modules and fresh LLM LoRA are trained."
+    },
+    "learning_rates": {
+      "LLM_LoRA": 0.0001,
+      "encoder": 1e-05,
+      "projector": 1e-05
+    },
+    "loss": {
+      "epoch_segments": [
+        {
+          "epoch_interval": "(0,0.1]",
+          "logged_windows": 38,
+          "first_step": 1,
+          "last_step": 740,
+          "mean_logged_loss": 0.01960582468604509,
+          "mean_logged_grad_norm": 0.48879101166599676,
+          "mean_logged_token_acc": 0.9944892043622241
+        },
+        {
+          "epoch_interval": "(0.1,0.25]",
+          "logged_windows": 56,
+          "first_step": 760,
+          "last_step": 1860,
+          "mean_logged_loss": 0.020805838584367718,
+          "mean_logged_grad_norm": 0.4773214760103396,
+          "mean_logged_token_acc": 0.9941345630421836
+        },
+        {
+          "epoch_interval": "(0.25,0.5]",
+          "logged_windows": 94,
+          "first_step": 1880,
+          "last_step": 3740,
+          "mean_logged_loss": 0.020762184714066222,
+          "mean_logged_grad_norm": 0.4161153805263816,
+          "mean_logged_token_acc": 0.9941517256578251
+        },
+        {
+          "epoch_interval": "(0.5,0.75]",
+          "logged_windows": 94,
+          "first_step": 3760,
+          "last_step": 5620,
+          "mean_logged_loss": 0.020488110929727556,
+          "mean_logged_grad_norm": 0.5426404094719823,
+          "mean_logged_token_acc": 0.9943056247619624
+        },
+        {
+          "epoch_interval": "(0.75,1]",
+          "logged_windows": 94,
+          "first_step": 5640,
+          "last_step": 7500,
+          "mean_logged_loss": 0.019469155918093436,
+          "mean_logged_grad_norm": 0.3990179751306138,
+          "mean_logged_token_acc": 0.9945964939927036
+        }
+      ],
+      "aggregation": "Arithmetic means of existing logged optimizer-step windows ending in each interval; not fresh corpus-level loss.",
+      "loss_min": 0.002958687487989664,
+      "loss_max": 0.033791917562484744,
+      "final_train_summary": [
+        {
+          "train_runtime": 9122.7244,
+          "train_samples_per_second": 13.165,
+          "train_steps_per_second": 0.823,
+          "total_flos": 6.214893186863596e+17,
+          "train_loss": 0.020294497740932976,
+          "epoch": 1.0,
+          "step": 7507
+        }
+      ],
+      "interpretation": "Segments are broadly stable .0195-.0208. High teacher-forced token accuracy is not proof of correct autoregressive decoding or optimal training."
+    },
+    "development_loss": {
+      "records": [
+        {
+          "eval_loss": 0.04654206335544586,
+          "eval_runtime": 635.9272,
+          "eval_samples_per_second": 22.528,
+          "eval_steps_per_second": 11.264,
+          "eval_token_acc": 0.9896093312280344,
+          "epoch": 1.0,
+          "step": 7507
+        },
+        {
+          "eval_loss": 0.04654206335544586,
+          "eval_runtime": 629.8911,
+          "eval_samples_per_second": 22.744,
+          "eval_steps_per_second": 11.372,
+          "eval_token_acc": 0.9896093312280344,
+          "epoch": 1.0,
+          "step": 7507
+        }
+      ],
+      "distinct_evaluated_steps": [
+        7507
+      ],
+      "earlier_dev_curve_available": false,
+      "interpretation": "Two identical .04654206335544586 evaluations at final step 7507 with unchanged final weights; not an early-to-late development trend."
+    },
+    "template_decode_review": {
+      "training_structure": "user head + speech features + fixed transcribe prompt + user end + assistant head + gold response + EOS",
+      "decoding_structure": "Same prompt prefix; generate continuation without reference",
+      "logged_example": {
+        "masked_prompt_positions": 69,
+        "speech_token_id": 151646,
+        "speech_positions_masked": true,
+        "response_labels_match_response_input_ids": true,
+        "supervised_EOS": 151645
+      },
+      "alignment": "Plugin validates placeholder count, forward asserts exact projected speech length equality, and existing CPU mixed-length tests cover feature replacement/masking/backward/reload. Tests read, not rerun here.",
+      "finding": "No obvious chat/EOS mismatch, inference reference leakage or speech alignment bug in reviewed paths. Training teacher forcing is intentional.",
+      "normalization_buffers": "Conformer batch_norm is nn.LayerNorm, not BatchNorm; dropping learned BatchNorm running_mean/var is not supported as an explanation."
+    }
+  },
+  "data": {
+    "target_audit": {
+      "records_checked": 120098,
+      "counts": {
+        "raw_to_normalized_changed": 120067,
+        "normalized_text_not_whitespace_only": 0,
+        "prepared_target_not_whitespace_only": 0,
+        "plugin_clean_additional_target_changes": 0,
+        "empty_effective_target": 0,
+        "special_token_in_assistant_target": 0,
+        "unexpected_prompt": 0,
+        "unexpected_message_roles": 0,
+        "unexpected_prepared_keys": 0,
+        "unexpected_message_keys": 0,
+        "audio_mapping_mismatch": 0,
+        "normalized_nontext_metadata_changed": 0,
+        "normalized_ids_changed": 0
+      },
+      "mismatch_examples": [],
+      "result": "All normalized and prepared targets equal the raw transcript with whitespace removed; FireRed plugin clean_transcript changes zero additional target strings in this actual AISHELL training set.",
+      "prepared_structure": {
+        "keys": [
+          "messages",
+          "audios"
+        ],
+        "message_roles": [
+          "user",
+          "assistant"
+        ],
+        "user_content": "<audio>请转写音频为文字",
+        "assistant_content": "whitespace-stripped transcript only; no response prefix",
+        "audio_per_record": 1
+      },
+      "expected_template_tokens": "The user <audio> marker is intentional. Plugin registers ChatML role boundaries and assistant <|im_end|> terminator during tokenization; these are template framing, not literal contamination in the prepared assistant text.",
+      "plugin_cleaning_general_rule": "clean_transcript can remove selected punctuation, normalize whitespace, and lowercase in general; direct application to every actual prepared AISHELL target made zero changes.",
+      "supports_excluding": "No evidence here for silent lexical rewrites by whitespace normalization, accidental assistant response prefixes, or literal template special tokens inserted into target text.",
+      "does_not_verify": [
+        "Semantic correctness of transcripts against audio.",
+        "All runtime tokenized input_ids/labels, loss masks, attention behavior, or wrapper implementation.",
+        "Whether unusual official transcript strings represent genuine pronunciation, transcription convention, or annotation error."
+      ]
+    },
+    "phrase_counts": {
+      "债券": {
+        "train": 171,
+        "test_reference": 94,
+        "baseline_output": 125,
+        "sft_output": 114
+      },
+      "债劵": {
+        "train": 35,
+        "test_reference": 29,
+        "baseline_output": 0,
+        "sft_output": 10
+      },
+      "证券": {
+        "train": 433,
+        "test_reference": 12,
+        "baseline_output": 13,
+        "sft_output": 13
+      },
+      "证劵": {
+        "train": 74,
+        "test_reference": 0,
+        "baseline_output": 0,
+        "sft_output": 0
+      },
+      "显著": {
+        "train": 12,
+        "test_reference": 0,
+        "baseline_output": 0,
+        "sft_output": 2
+      },
+      "显着": {
+        "train": 46,
+        "test_reference": 4,
+        "baseline_output": 4,
+        "sft_output": 2
+      },
+      "报导": {
+        "train": 26,
+        "test_reference": 4,
+        "baseline_output": 1,
+        "sft_output": 0
+      },
+      "报道": {
+        "train": 1112,
+        "test_reference": 86,
+        "baseline_output": 89,
+        "sft_output": 90
+      },
+      "账户": {
+        "train": 116,
+        "test_reference": 2,
+        "baseline_output": 2,
+        "sft_output": 1
+      },
+      "帐户": {
+        "train": 8,
+        "test_reference": 0,
+        "baseline_output": 0,
+        "sft_output": 1
+      },
+      "美芝": {
+        "train": 0,
+        "test_reference": 9,
+        "baseline_output": 9,
+        "sft_output": 8
+      },
+      "每只": {
+        "train": 5,
+        "test_reference": 0,
+        "baseline_output": 0,
+        "sft_output": 1
+      },
+      "威灵": {
+        "train": 0,
+        "test_reference": 13,
+        "baseline_output": 13,
+        "sft_output": 12
+      },
+      "微零": {
+        "train": 0,
+        "test_reference": 0,
+        "baseline_output": 0,
+        "sft_output": 1
+      },
+      "寅吃卯粮": {
+        "train": 0,
+        "test_reference": 2,
+        "baseline_output": 2,
+        "sft_output": 1
+      },
+      "饮鸩饱粮": {
+        "train": 0,
+        "test_reference": 0,
+        "baseline_output": 0,
+        "sft_output": 1
+      },
+      "大煞风景": {
+        "train": 0,
+        "test_reference": 1,
+        "baseline_output": 1,
+        "sft_output": 0
+      },
+      "大厦封顶": {
+        "train": 0,
+        "test_reference": 0,
+        "baseline_output": 0,
+        "sft_output": 1
+      },
+      "李彬彬": {
+        "train": 0,
+        "test_reference": 2,
+        "baseline_output": 1,
+        "sft_output": 0
+      },
+      "李冰冰": {
+        "train": 0,
+        "test_reference": 0,
+        "baseline_output": 1,
+        "sft_output": 2
+      },
+      "鉴借": {
+        "train": 0,
+        "test_reference": 1,
+        "baseline_output": 1,
+        "sft_output": 0
+      },
+      "借鉴": {
+        "train": 27,
+        "test_reference": 0,
+        "baseline_output": 0,
+        "sft_output": 1
+      },
+      "重监护室": {
+        "train": 0,
+        "test_reference": 1,
+        "baseline_output": 1,
+        "sft_output": 0
+      },
+      "重症监护室": {
+        "train": 12,
+        "test_reference": 1,
+        "baseline_output": 1,
+        "sft_output": 2
+      },
+      "资金": {
+        "train": 790,
+        "test_reference": 56,
+        "baseline_output": 55,
+        "sft_output": 56
+      },
+      "丝巾": {
+        "train": 0,
+        "test_reference": 0,
+        "baseline_output": 1,
+        "sft_output": 0
+      },
+      "临危受命": {
+        "train": 1,
+        "test_reference": 1,
+        "baseline_output": 0,
+        "sft_output": 1
+      },
+      "林薇受命": {
+        "train": 0,
+        "test_reference": 0,
+        "baseline_output": 1,
+        "sft_output": 0
+      }
+    },
+    "frequency_method": {
+      "text_preprocessing": "Remove all whitespace with Python str.split/join from raw official reference; preserve all other characters. This exactly equals the verified prepared assistant target for all 120098 training records.",
+      "occurrences": "Case-sensitive exact substring counts, Python str.count non-overlapping per utterance; sum across utterances.",
+      "utterances": "Number of utterances containing the exact substring at least once.",
+      "rate_denominator": "The corresponding split utterance count; counts also provide per-10000 utterance rates.",
+      "pair_share": "Second-form occurrence count divided by both forms total count, not percentage of all sentences.",
+      "limitations": "These are observed target text frequencies, not model token probabilities. Train/test differ in topics and corpus size; counts alone do not identify causal mechanisms or reveal any model pretraining corpus."
+    },
+    "text_repetition_and_overlap": {
+      "normalization": "Remove whitespace only, retain all other characters; exact entire transcript equality.",
+      "train": {
+        "unique_texts": 113737,
+        "repeated_distinct_texts": 4627,
+        "records_in_repeated_text_groups": 10988,
+        "extra_records_beyond_one_per_text": 6361
+      },
+      "test": {
+        "unique_texts": 6848,
+        "repeated_distinct_texts": 298,
+        "records_in_repeated_text_groups": 626,
+        "extra_records_beyond_one_per_text": 328
+      },
+      "cross_split_identical_distinct_texts": 99,
+      "test_records_with_train_identical_text": 134,
+      "test_record_overlap_percent": 1.8673355629877368,
+      "train_records_with_test_identical_text": 834,
+      "train_test_id_intersection_count": 0,
+      "train_test_audio_path_intersection_count": 0,
+      "top_train_repeated_texts": [
+        {
+          "text": "搜狐娱乐讯据台湾媒体报道",
+          "train_records": 286
+        },
+        {
+          "text": "搜狐娱乐讯据香港媒体报道",
+          "train_records": 142
+        },
+        {
+          "text": "相关公司股票走势",
+          "train_records": 64
+        },
+        {
+          "text": "据香港媒体报道",
+          "train_records": 43
+        },
+        {
+          "text": "点击进入股友会参与讨论",
+          "train_records": 29
+        },
+        {
+          "text": "每日经济新闻记者注意到",
+          "train_records": 24
+        },
+        {
+          "text": "据香港媒体报导",
+          "train_records": 19
+        },
+        {
+          "text": "搜狐娱乐讯近日",
+          "train_records": 19
+        },
+        {
+          "text": "同比上涨百分之四十",
+          "train_records": 17
+        },
+        {
+          "text": "国家统计局数据显示",
+          "train_records": 16
+        }
+      ],
+      "longest_identical_cross_split_text_examples": [
+        {
+          "text": "二零一五年第十二届女排世界杯单循环赛战至第八轮",
+          "train_records": 1,
+          "test_records": 1
+        },
+        {
+          "text": "刚刚在日本女排世界杯上夺冠的中国女排载誉回京",
+          "train_records": 1,
+          "test_records": 1
+        },
+        {
+          "text": "对拥有一套住房并已结清相应购房贷款的居民家庭",
+          "train_records": 5,
+          "test_records": 2
+        },
+        {
+          "text": "门头沟雁翅镇村民李冬梅向市政府提起了行政复议",
+          "train_records": 1,
+          "test_records": 1
+        },
+        {
+          "text": "中新网六月十六日电六月十六日是容祖儿的生日",
+          "train_records": 1,
+          "test_records": 1
+        },
+        {
+          "text": "视频中国三比一大胜俄罗斯独占女排世界杯榜首",
+          "train_records": 2,
+          "test_records": 1
+        },
+        {
+          "text": "视频中国三一大胜俄罗斯独占女排世界杯榜首",
+          "train_records": 2,
+          "test_records": 1
+        },
+        {
+          "text": "贾某被市三中院终审判处有期徒刑两年八个月",
+          "train_records": 1,
+          "test_records": 1
+        },
+        {
+          "text": "高清女排力擒俄罗斯夺冠占主动众将喜极而泣",
+          "train_records": 3,
+          "test_records": 2
+        },
+        {
+          "text": "为进一步完善住房公积金个人住房贷款政策",
+          "train_records": 2,
+          "test_records": 1
+        }
+      ],
+      "regressed_test_records_with_train_identical_text": 1,
+      "improved_test_records_with_train_identical_text": 2,
+      "interpretation": "This is repeated written content, not demonstrated audio leakage. Official speaker/audio splits were verified separately; equal transcript strings alone do not establish same recording, and do not by themselves explain regression."
+    },
+    "conclusions_not_supported_by_text_frequency_audit": [
+      "Not supported: the preprocessing accidentally changed Chinese wording or inserted special template tokens into all training targets.",
+      "Not supported: every degradation simply follows the most frequent training spelling.",
+      "Not supported: the new output phrases were all memorized verbatim from this SFT training set.",
+      "Not established: unusual reference spellings are wrong; no audio or original-news-text review was performed.",
+      "Not established: any model pretraining corpus content, or a causal role for optimizer, LoRA, dropout, audio modules, or number of epochs.",
+      "Not established: identical train/test transcript text implies identical audio or audio leakage."
+    ]
+  },
+  "hypotheses": [
+    {
+      "hypothesis": "Current LLM LoRA is the dominant component carrying the regression",
+      "strength": "supported by fixed-checkpoint module intervention and full-test audit",
+      "evidence": "Original804, LLM-only849, audio-only812, full850;96/105 full regressions exactly reproduced by LLM-only",
+      "boundary": "Not a counterfactual training run with audio frozen; no percentage causal allocation of errors"
+    },
+    {
+      "hypothesis": "ASR text/word decision boundaries moved under SFT",
+      "strength": "compatible mechanism, not resolved internally",
+      "evidence": "Same original audio parameters and features yield changed words when only LLM weights change; both content and spelling-sensitive cases occur",
+      "boundary": "LLM changes can affect textual priors and use of speech embeddings; current experiment does not separate those internal mechanisms"
+    },
+    {
+      "hypothesis": "Supervision spelling and phrase conventions contribute to some scored shifts",
+      "strength": "compatible frequency and case evidence with counterexamples",
+      "evidence": "借鉴27/鉴借0 and 重症监护室12/重监护室0; minority 债劵 appears35 times in train and newly10 times in test output",
+      "boundary": "No audio/reference semantic audit; 显著 and 帐户 changes oppose training-majority spelling and several wrong phrases are absent from train"
+    },
+    {
+      "hypothesis": "LLM update strength or missing intended LoRA dropout is unsuitable",
+      "strength": "configuration facts supported; causal effect untested",
+      "evidence": "Actual LLM LR1e-4, LoRA r8 alpha32, actual dropout0.0 despite args0.05",
+      "boundary": "No LR/dropout sweep or equivalent controlled retraining; encoder dropout is0.1"
+    },
+    {
+      "hypothesis": "Objective/checkpoint selection mismatch allows CER regression",
+      "strength": "training/evaluation design supported; possible contributor",
+      "evidence": "Teacher-forced cross-entropy training; final checkpoint only, no development CER checkpoint selection; final dev repeated same weights",
+      "boundary": "No early dev trajectory or before-SFT full-train CE, so overfitting has not been established"
+    },
+    {
+      "hypothesis": "Data conversion, wrong LR assignment, label leakage or decode-condition drift caused the regression",
+      "strength": "counterevidence in checked paths",
+      "evidence": "All120098 targets match whitespace-only transform; LR group ratio10x holds; prompt/audio labels masked and decode inputs do not contain references; settings and module isolation audited",
+      "boundary": "Does not prove every conceivable implementation fault impossible"
+    }
+  ],
+  "results": {
+    "llm_only": {
+      "grid_label": "B",
+      "status": "passed",
+      "job_id": "job-179177345706094315690-jiaqi-guo",
+      "utterances": 7176,
+      "S": 732,
+      "D": 56,
+      "I": 61,
+      "errors": 849,
+      "ref_units": 104765,
+      "hyp_units": 104770,
+      "error_rate_percent": 0.8103851477115449,
+      "truncated_samples": 0,
+      "manifest_sha256": "f5845d431dab5fa109b2f5c3088a8a6ad2b842d6f9f6ec7b6d2cd14895ced8f7",
+      "predictions_sha256": "fa06ddd8a4a84349d23396db39dc0f60e783557d1d08f9ac047233268de21f92",
+      "metrics_sha256": "80c0ae9ea74546c659d12ca2ee9179e07b6b85579e2df468f20c37d88ee1852a",
+      "decode_metadata_sha256": "72c2dbf9ae745d899ffecc0d132e468b64b389059a77205e93178dd57ed35546",
+      "checkpoint_verification": {
+        "actual_llm_attn_implementation": "sdpa",
+        "component": "llm_only",
+        "component_fingerprints_after": {
+          "audio": {
+            "bytes": 1490739904,
+            "sha256": "7de5455f25aee19b37e7fa9fb53d8c9029889f26489bd551f26cc630a57cfe86",
+            "tensors": 555
+          },
+          "llm": {
+            "bytes": 15231233152,
+            "sha256": "7012b51c5b856b06d9f3a64a6e56550854bf1734ba95c0566d7dee8de3279de2",
+            "tensors": 340
+          }
+        },
+        "component_fingerprints_before": {
+          "audio": {
+            "bytes": 1490739904,
+            "sha256": "7de5455f25aee19b37e7fa9fb53d8c9029889f26489bd551f26cc630a57cfe86",
+            "tensors": 555
+          },
+          "llm": {
+            "bytes": 15231233152,
+            "sha256": "2d1cad9d94f436d74c62cad932ab56e4cd7647daaa6f0f0d04d2854e8f888e78",
+            "tensors": 340
+          }
+        },
+        "llm_configuration_sha256": "c230c45a90186fe924348efc4e31265364a8a4bdcc3f0684bb9d6459ea5ebbd0",
+        "llm_lora_checked_parameters": 392,
+        "loaded_subset": "llm",
+        "loaded_subset_effectively_changed": true,
+        "official_lora_merged": true,
+        "sft_adapter_loaded": true,
+        "unchanged_subset": "audio",
+        "unchanged_subset_exact": true,
+        "vit_checked_parameters": 0
+      }
+    },
+    "audio_only": {
+      "grid_label": "C",
+      "status": "passed",
+      "job_id": "job-179177346484328534042-jiaqi-guo",
+      "utterances": 7176,
+      "S": 703,
+      "D": 59,
+      "I": 50,
+      "errors": 812,
+      "ref_units": 104765,
+      "hyp_units": 104756,
+      "error_rate_percent": 0.7750680093542691,
+      "truncated_samples": 0,
+      "manifest_sha256": "f5845d431dab5fa109b2f5c3088a8a6ad2b842d6f9f6ec7b6d2cd14895ced8f7",
+      "predictions_sha256": "74cc38a4701cff9baf849b92848f9c64534a3acef651575df6a647fc2b09a400",
+      "metrics_sha256": "21531c634e3e690e437b552e225793646980823b4664527e79b96eb84c52fa30",
+      "decode_metadata_sha256": "ea9685607f9b44d4d3a61e95960eae20d9611e7850e8efb75935f0f7f86728a5",
+      "checkpoint_verification": {
+        "actual_llm_attn_implementation": "sdpa",
+        "component": "audio_only",
+        "component_fingerprints_after": {
+          "audio": {
+            "bytes": 1490739904,
+            "sha256": "6b89b610606550df56c049e9c7aa8c1882f70ca05fed08f15ec04a99e72c437b",
+            "tensors": 555
+          },
+          "llm": {
+            "bytes": 15231233152,
+            "sha256": "2d1cad9d94f436d74c62cad932ab56e4cd7647daaa6f0f0d04d2854e8f888e78",
+            "tensors": 340
+          }
+        },
+        "component_fingerprints_before": {
+          "audio": {
+            "bytes": 1490739904,
+            "sha256": "7de5455f25aee19b37e7fa9fb53d8c9029889f26489bd551f26cc630a57cfe86",
+            "tensors": 555
+          },
+          "llm": {
+            "bytes": 15231233152,
+            "sha256": "2d1cad9d94f436d74c62cad932ab56e4cd7647daaa6f0f0d04d2854e8f888e78",
+            "tensors": 340
+          }
+        },
+        "llm_configuration_sha256": "c230c45a90186fe924348efc4e31265364a8a4bdcc3f0684bb9d6459ea5ebbd0",
+        "llm_lora_checked_parameters": 0,
+        "loaded_subset": "audio",
+        "loaded_subset_effectively_changed": true,
+        "official_lora_merged": true,
+        "sft_adapter_loaded": false,
+        "unchanged_subset": "llm",
+        "unchanged_subset_exact": true,
+        "vit_checked_parameters": 554
+      }
+    }
+  },
+  "scripts_sha256": {
+    "firered_decode.py": "4db3f94567ba863210e89abcf83407945662bf968cea825a8d6269b647eb2899",
+    "score.py": "b1bc692c138d645dfa80c8636713ae5c9588462610fa9de9765aaba6e5beef08",
+    "environment.sh": "15eefcd6fcbd65956d2eba5948a9749200a558f98766d72b0f773f48054917b0",
+    "component_decode.py": "f1c28d74953799b21ef91f2d70afb5d6d56c51ab311d1a95f368c4acb0db4653",
+    "run_component.sh": "ddae51ff281cbfbad188baadfbff232f94ce26d3a8e089c211f44d63c68d5051",
+    "test_component_decode.py": "2ddb36759433a1dbec9a9d2c0c4d5ac627a5c57fe4e9e9a9ab50dbafc4ab47df"
+  },
+  "checkpoint_sha256": {
+    "adapter_config.json": "9739cea69e39ca2fbc85b3a3f3604defbc16be9961cf3433170b07b181657e71",
+    "adapter_model.safetensors": "581a197c36988259b89ad936a538ff2ce19974160e982b2840f3c10bd19afe87",
+    "vit.safetensors": "7bb35e4ffdecb39f63ca655af4f1e7ac8004383b2b3ff39c7064cd0d2c547e22"
+  },
+  "source_sha256": {
+    "baseline_20261012/fireredasr_llm_aishell/test_predictions.jsonl": "a4c43ad0a23deae604bf4fee14a666b791fdd0d1908dbdd1678a2cbb9aca6ed4",
+    "baseline_20261012/fireredasr_llm_aishell/test_metrics.json": "211c7017119a2d005f1ea534a3065c2879f1ff7f75d56b8d5c1189415faa17bb",
+    "baseline_20261012/fireredasr_llm_aishell/test_predictions.jsonl.metadata.json": "ff1f8dacf3e54e9996d6afe64cf469a0eebf9583d7d7f53b7f8e680fcbd706f6",
+    "cause_analysis_20261012/llm_only/test_predictions.jsonl": "fa06ddd8a4a84349d23396db39dc0f60e783557d1d08f9ac047233268de21f92",
+    "cause_analysis_20261012/llm_only/test_metrics.json": "80c0ae9ea74546c659d12ca2ee9179e07b6b85579e2df468f20c37d88ee1852a",
+    "cause_analysis_20261012/llm_only/test_predictions.jsonl.metadata.json": "72c2dbf9ae745d899ffecc0d132e468b64b389059a77205e93178dd57ed35546",
+    "cause_analysis_20261012/audio_only/test_predictions.jsonl": "74cc38a4701cff9baf849b92848f9c64534a3acef651575df6a647fc2b09a400",
+    "cause_analysis_20261012/audio_only/test_metrics.json": "21531c634e3e690e437b552e225793646980823b4664527e79b96eb84c52fa30",
+    "cause_analysis_20261012/audio_only/test_predictions.jsonl.metadata.json": "ea9685607f9b44d4d3a61e95960eae20d9611e7850e8efb75935f0f7f86728a5",
+    "experiments/fireredasr_llm_aishell/test_predictions.jsonl": "912faacb48280ce5c51835c2a0282c8182851df95338bab709a15c1c893dded3",
+    "experiments/fireredasr_llm_aishell/test_metrics.json": "681c95c7982e50a688a31bf7ed5f0c9500ce15722d1fe900c039b7bcd398d9e7",
+    "experiments/fireredasr_llm_aishell/test_predictions.jsonl.metadata.json": "d43f17819ea7faa895128439d31103a410992cfa02e98248953ea6634c1b175a"
+  },
+  "audit_sha256": {
+    "component-audit.json": "04d1bcbab0b5858be6ee8683de5150aac9868215d5517c388da6961ad17418a8",
+    "optimization_analysis.json": "50d2c5665bc5481cc1d87885d984af6a992c70d8f3f420f6028d651ac089205b",
+    "data_style_analysis.json": "cb5a4e1516a2fe49f7c1e10678f10328a2a602940ea6ef8333fed0e9d1597f45"
+  },
+  "external_primary_sources": [
+    {
+      "url": "https://arxiv.org/html/2501.14350v1",
+      "scope": "Background: released ASR model architecture, large-scale training, transcript cross-entropy and reported AISHELL CER; not proof of our regression mechanism"
+    }
+  ],
+  "artifacts_directory": "output/asr_benchmark_20261010/cause_analysis_20261012",
+  "limitations": [
+    "Fixed checkpoint component substitutions, not frozen-component retraining",
+    "No audio/reference semantic review",
+    "No controlled LR/dropout or precision sweep",
+    "No multiple training seeds",
+    "Bootstrap resamples held-out speaker clusters and is not training variance"
+  ]
+}

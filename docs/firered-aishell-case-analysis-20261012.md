@@ -110,3 +110,5 @@
 要定位具体模块，需要受控的冻结/更新音频侧消融、开发集 CER 的 checkpoint 比较和多个训练 seed；要区分转写写法与实际听错，需要回听并核对候选参考。这些是当前结论的验证边界，不改变已报告的官方固定口径 CER。
 
 完整逐句配对、105 条退化 TSV、72 条改善 TSV、源文件哈希及独立审核保存在本地 `output/asr_benchmark_20261010/case_analysis_20261012/`。公开的 [机器可读分析](firered-aishell-case-analysis-20261012.json) 保存统计、bootstrap 参数、真实样例、验证边界和输入哈希；整体对比见 [ASR Benchmark](asr-benchmark-20261010.md)。
+
+后续已补做 [组件替换与原因分析](firered-aishell-regression-causes-20261012.md)：只换 LLM LoRA 复现了 105 条退化句中 96 条的完整 SFT 输出。该干预定位现有权重的影响组件，尚不等价于冻结模块重新训练的结果。

@@ -52,7 +52,7 @@ exec uv run --project "$REPO_ROOT" --locked audio-swift "${command[@]}" \
     --per_device_train_batch_size "${TRAIN_BS:-1}" \
     --per_device_eval_batch_size "${EVAL_BS:-1}" \
     --gradient_accumulation_steps "${GRAD_ACC:-16}" \
-    --learning_rate "${LEARNING_RATE:-1e-4}" \
+    --learning_rate "${LEARNING_RATE:-1e-5}" \
     --vit_lr "${VIT_LR:-1e-5}" \
     --aligner_lr "${ALIGNER_LR:-1e-5}" \
     --lora_rank "${LORA_RANK:-8}" \

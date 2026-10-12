@@ -52,3 +52,5 @@ FireRed AISHELL 的首次测试因 fresh `--resume` 状态判断失败；修复�
 [机器可读结果与运行时哈希](asr-benchmark-20261010.json)包含完整精度指标、错误计数、数据划分、实际 adapter 配置和任务记录。训练入口为 [Qwen Bash 示例](../examples/qwen3_asr/sft.sh) 与 [FireRed Bash 示例](../examples/fireredasr_llm/sft.sh)；完整日志、评分脚本、逐句预测和 checkpoint 保存在本地 `output/asr_benchmark_20261010/`。GitHub 保存实验记录与汇总结果。
 
 原始权重的任务记录、逐句预测、评分及独立配对审核保存在本地 `output/asr_benchmark_20261010/baseline_20261012/`；对应计数、哈希、对比公式和全精度指标同步到上述 JSON。
+
+FireRed AISHELL-1 的逐句退化分析见 [case 分析](firered-aishell-case-analysis-20261012.md)：105 句错误增加、72 句减少，净多 46 个字错误，主要净变化是替换 +44。报告区分了内容变化、书写/参考敏感 case，并给出配对说话人重采样结果。

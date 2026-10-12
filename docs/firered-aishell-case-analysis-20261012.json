@@ -1,0 +1,1253 @@
+{
+  "date": "2026-10-12",
+  "status": "passed",
+  "model": "FireRedASR-LLM-L",
+  "corpus": "AISHELL-1 official test",
+  "analysis_scope": "Paired existing pretrained/SFT predictions; no new decoding or training; audio not listened to",
+  "normalization": "NFKC, lowercase, remove Unicode punctuation and whitespace; no ITN; unchanged benchmark policy",
+  "statistics": {
+    "samples": 7176,
+    "reference_chars": 104765,
+    "before": {
+      "S": 689,
+      "D": 60,
+      "I": 55,
+      "errors": 804,
+      "error_rate_percent": 0.7674318713310743
+    },
+    "after": {
+      "S": 733,
+      "D": 58,
+      "I": 59,
+      "errors": 850,
+      "error_rate_percent": 0.8113396649644442
+    },
+    "delta_errors": 46,
+    "transitions": {
+      "correct->correct": 6442,
+      "wrong->wrong": 594,
+      "correct->wrong": 84,
+      "wrong->correct": 56
+    },
+    "regressed_utterances": 105,
+    "improved_utterances": 72,
+    "equal_error_utterances": 6999,
+    "regression_error_increase": 129,
+    "improvement_error_decrease": 83,
+    "raw_changed_utterances": 191,
+    "normalized_changed_utterances": 191,
+    "speakers": {
+      "BAC009S0764": {
+        "utterances": 370,
+        "reference_chars": 5417,
+        "before_errors": 41,
+        "after_errors": 46,
+        "delta_errors": 5,
+        "regressed": 6,
+        "improved": 1
+      },
+      "BAC009S0765": {
+        "utterances": 361,
+        "reference_chars": 5318,
+        "before_errors": 26,
+        "after_errors": 35,
+        "delta_errors": 9,
+        "regressed": 6,
+        "improved": 1
+      },
+      "BAC009S0766": {
+        "utterances": 340,
+        "reference_chars": 4904,
+        "before_errors": 24,
+        "after_errors": 26,
+        "delta_errors": 2,
+        "regressed": 5,
+        "improved": 2
+      },
+      "BAC009S0767": {
+        "utterances": 353,
+        "reference_chars": 5146,
+        "before_errors": 44,
+        "after_errors": 41,
+        "delta_errors": -3,
+        "regressed": 0,
+        "improved": 3
+      },
+      "BAC009S0768": {
+        "utterances": 367,
+        "reference_chars": 5251,
+        "before_errors": 80,
+        "after_errors": 82,
+        "delta_errors": 2,
+        "regressed": 8,
+        "improved": 9
+      },
+      "BAC009S0769": {
+        "utterances": 361,
+        "reference_chars": 5216,
+        "before_errors": 28,
+        "after_errors": 31,
+        "delta_errors": 3,
+        "regressed": 8,
+        "improved": 5
+      },
+      "BAC009S0770": {
+        "utterances": 353,
+        "reference_chars": 5096,
+        "before_errors": 59,
+        "after_errors": 54,
+        "delta_errors": -5,
+        "regressed": 4,
+        "improved": 9
+      },
+      "BAC009S0901": {
+        "utterances": 368,
+        "reference_chars": 5278,
+        "before_errors": 39,
+        "after_errors": 38,
+        "delta_errors": -1,
+        "regressed": 3,
+        "improved": 3
+      },
+      "BAC009S0902": {
+        "utterances": 363,
+        "reference_chars": 5259,
+        "before_errors": 53,
+        "after_errors": 52,
+        "delta_errors": -1,
+        "regressed": 3,
+        "improved": 5
+      },
+      "BAC009S0903": {
+        "utterances": 373,
+        "reference_chars": 5499,
+        "before_errors": 45,
+        "after_errors": 44,
+        "delta_errors": -1,
+        "regressed": 3,
+        "improved": 4
+      },
+      "BAC009S0904": {
+        "utterances": 368,
+        "reference_chars": 5474,
+        "before_errors": 26,
+        "after_errors": 27,
+        "delta_errors": 1,
+        "regressed": 4,
+        "improved": 3
+      },
+      "BAC009S0905": {
+        "utterances": 360,
+        "reference_chars": 5342,
+        "before_errors": 30,
+        "after_errors": 40,
+        "delta_errors": 10,
+        "regressed": 10,
+        "improved": 2
+      },
+      "BAC009S0906": {
+        "utterances": 353,
+        "reference_chars": 5125,
+        "before_errors": 51,
+        "after_errors": 48,
+        "delta_errors": -3,
+        "regressed": 3,
+        "improved": 6
+      },
+      "BAC009S0907": {
+        "utterances": 350,
+        "reference_chars": 5041,
+        "before_errors": 20,
+        "after_errors": 22,
+        "delta_errors": 2,
+        "regressed": 6,
+        "improved": 4
+      },
+      "BAC009S0908": {
+        "utterances": 353,
+        "reference_chars": 5083,
+        "before_errors": 39,
+        "after_errors": 43,
+        "delta_errors": 4,
+        "regressed": 5,
+        "improved": 2
+      },
+      "BAC009S0912": {
+        "utterances": 335,
+        "reference_chars": 4919,
+        "before_errors": 29,
+        "after_errors": 31,
+        "delta_errors": 2,
+        "regressed": 4,
+        "improved": 2
+      },
+      "BAC009S0913": {
+        "utterances": 363,
+        "reference_chars": 5413,
+        "before_errors": 49,
+        "after_errors": 58,
+        "delta_errors": 9,
+        "regressed": 10,
+        "improved": 3
+      },
+      "BAC009S0914": {
+        "utterances": 361,
+        "reference_chars": 5344,
+        "before_errors": 41,
+        "after_errors": 43,
+        "delta_errors": 2,
+        "regressed": 4,
+        "improved": 3
+      },
+      "BAC009S0915": {
+        "utterances": 363,
+        "reference_chars": 5338,
+        "before_errors": 37,
+        "after_errors": 48,
+        "delta_errors": 11,
+        "regressed": 11,
+        "improved": 2
+      },
+      "BAC009S0916": {
+        "utterances": 361,
+        "reference_chars": 5302,
+        "before_errors": 43,
+        "after_errors": 41,
+        "delta_errors": -2,
+        "regressed": 2,
+        "improved": 3
+      }
+    },
+    "definitions": {
+      "regression_error_increase": "Sum max(after_errors-before_errors,0), per-utterance net increases, not individual newly introduced edit events",
+      "improvement_error_decrease": "Sum max(before_errors-after_errors,0), per-utterance net decreases, not individual repaired edit events",
+      "speaker_grouping": "Utterance ID prefix BAC009Sxxxx; contents differ between speakers, so concentration is not evidence of a voice/accent cause",
+      "case_categories": "Qualitative examples only; no exhaustive category prevalence estimated"
+    },
+    "delta_error_distribution": {
+      "-2": 11,
+      "-1": 61,
+      "0": 6999,
+      "1": 85,
+      "2": 17,
+      "3": 2,
+      "4": 1
+    },
+    "changed_with_equal_errors": 14,
+    "unchanged_normalized_outputs": 6985,
+    "regression_max_extra_errors": 4,
+    "regression_max_output_length_increase": 1,
+    "regression_multi_error_utterances": 20,
+    "sentence_error_rates": {
+      "before": 9.057971014492754,
+      "after": 9.448160535117056
+    },
+    "speaker_delta_counts": {
+      "worse": 13,
+      "better": 7,
+      "same": 0
+    },
+    "top_four_speaker_groups": {
+      "ids": [
+        "BAC009S0915",
+        "BAC009S0905",
+        "BAC009S0765",
+        "BAC009S0913"
+      ],
+      "samples": 1447,
+      "reference_chars": 21411,
+      "net_extra_errors": 39
+    },
+    "duration_bins": [
+      {
+        "bin": "0-3s",
+        "utterances": 378,
+        "ref_chars": 3213,
+        "before_errors": 30,
+        "after_errors": 32,
+        "delta_errors": 2,
+        "before_cer_percent": 0.9337068160597572,
+        "after_cer_percent": 0.9959539371304077,
+        "regressed": 3,
+        "improved": 1
+      },
+      {
+        "bin": "3-5s",
+        "utterances": 3616,
+        "ref_chars": 44000,
+        "before_errors": 281,
+        "after_errors": 294,
+        "delta_errors": 13,
+        "before_cer_percent": 0.6386363636363637,
+        "after_cer_percent": 0.6681818181818182,
+        "regressed": 35,
+        "improved": 23
+      },
+      {
+        "bin": "5-8s",
+        "utterances": 2772,
+        "ref_chars": 48914,
+        "before_errors": 387,
+        "after_errors": 409,
+        "delta_errors": 22,
+        "before_cer_percent": 0.791184527947009,
+        "after_cer_percent": 0.8361614261765548,
+        "regressed": 50,
+        "improved": 35
+      },
+      {
+        "bin": "8+s",
+        "utterances": 410,
+        "ref_chars": 8638,
+        "before_errors": 106,
+        "after_errors": 115,
+        "delta_errors": 9,
+        "before_cer_percent": 1.2271359110905302,
+        "after_cer_percent": 1.3313266959944432,
+        "regressed": 17,
+        "improved": 13
+      }
+    ]
+  },
+  "bootstrap": {
+    "paired_utterance": {
+      "unit_count": 7176,
+      "replicates": 20000,
+      "seed": 20261012,
+      "rng": "numpy.random.default_rng/PCG64",
+      "numpy_version": "1.26.4",
+      "statistic": "100 * sum(after_errors - before_errors) / sum(reference_chars)",
+      "point_difference_percentage_points": 0.043907793633369926,
+      "percentile_95_ci_percentage_points": [
+        0.01239239764537657,
+        0.07664239258817726
+      ],
+      "replicates_with_difference_nonpositive_fraction": 0.00395,
+      "quantile_method": "linear percentile; equal-probability sampling with replacement of complete paired units"
+    },
+    "paired_speaker_cluster": {
+      "unit_count": 20,
+      "replicates": 20000,
+      "seed": 20261013,
+      "rng": "numpy.random.default_rng/PCG64",
+      "numpy_version": "1.26.4",
+      "statistic": "100 * sum(after_errors - before_errors) / sum(reference_chars)",
+      "point_difference_percentage_points": 0.043907793633369926,
+      "percentile_95_ci_percentage_points": [
+        0.007682844496622662,
+        0.08183228188366494
+      ],
+      "replicates_with_difference_nonpositive_fraction": 0.0093,
+      "quantile_method": "linear percentile; equal-probability sampling with replacement of complete paired units"
+    }
+  },
+  "alignment_sensitivity": {
+    "multiple_optimal_alignments_before": 37,
+    "multiple_optimal_alignments_after": 39,
+    "alternative_tie_break": "Prefer insertion, then deletion, then diagonal at optimal ties",
+    "canonical_counts_before": {
+      "S": 689,
+      "D": 60,
+      "I": 55,
+      "errors": 804
+    },
+    "canonical_counts_after": {
+      "S": 733,
+      "D": 58,
+      "I": 59,
+      "errors": 850
+    },
+    "alternate_counts_before": {
+      "S": 661,
+      "D": 74,
+      "I": 69
+    },
+    "alternate_counts_after": {
+      "S": 705,
+      "D": 72,
+      "I": 73
+    },
+    "all_alternative_edit_distances_unchanged": true,
+    "root_confusion_changes_verified": true
+  },
+  "qualitative_scope": {
+    "all_regression_rows_read": 105,
+    "all_improvement_rows_read": 72,
+    "detailed_representative_regressions": 12,
+    "detailed_representative_improvements": 5,
+    "additional_normalization_or_reference_candidates": 7,
+    "classification_policy": "逐条浏览全部退化与改善，详细人工标签仅覆盖下列样例；不将样例分布外推成全部退化类别占比。标签可重叠，不可加总。",
+    "global_category_counts": null,
+    "global_category_proportions": null,
+    "audio_listened": false,
+    "external_reference_checked": false,
+    "no_redecode_or_training": true
+  },
+  "representative_regressions": [
+    {
+      "id": "BAC009S0913W0309",
+      "reference": "美的将美芝压缩机威灵电机合并",
+      "before": "美的将美芝压缩机威灵电机合并",
+      "after": "美的将每只压缩机微零电机合并",
+      "before_errors": 0,
+      "after_errors": 4,
+      "delta_errors": 4,
+      "transition": "correct->wrong",
+      "before_counts": {
+        "S": 0,
+        "D": 0,
+        "I": 0
+      },
+      "after_counts": {
+        "S": 4,
+        "D": 0,
+        "I": 0
+      },
+      "tags": [
+        "明确新增替换",
+        "专名写法",
+        "同音或近音候选"
+      ],
+      "changed_segments": [
+        {
+          "before": "美芝",
+          "after": "每只",
+          "description": "新增美→每、芝→只两处替换"
+        },
+        {
+          "before": "威灵",
+          "after": "微零",
+          "description": "新增威→微、灵→零两处替换"
+        }
+      ],
+      "textual_interpretation": "原来整句与参考相同，SFT 后两个名称语段各改变两字，合计新增 4 个替换；句子其余部分不变。读音相近属于文本层面的候选解释，不能据此断定声学原因。",
+      "audio_checked": false,
+      "confirmation_needed": "文本差异和本评分下的错误数可以确认；实际发音、是否符合原文仍需听音及上下文核对。"
+    },
+    {
+      "id": "BAC009S0765W0226",
+      "reference": "不能简单地用寅吃卯粮来作价值判断",
+      "before": "不能简单地用寅吃卯粮来做价值判断",
+      "after": "不能简单地用饮鸩饱粮来做价值判断",
+      "before_errors": 1,
+      "after_errors": 4,
+      "delta_errors": 3,
+      "transition": "wrong->wrong",
+      "before_counts": {
+        "S": 1,
+        "D": 0,
+        "I": 0
+      },
+      "after_counts": {
+        "S": 4,
+        "D": 0,
+        "I": 0
+      },
+      "tags": [
+        "原错变更错",
+        "明确新增替换",
+        "词组变化",
+        "同音或近音候选"
+      ],
+      "changed_segments": [
+        {
+          "before": "寅吃卯粮",
+          "after": "饮鸩饱粮",
+          "description": "新增寅→饮、吃→鸩、卯→饱三处替换"
+        }
+      ],
+      "textual_interpretation": "baseline 已有作→做的 1 个错误；SFT 保留该错误，又将原来匹配参考的成语语段改成饮鸩饱粮，因此 1→4。不能仅凭结果归因为训练过拟合。",
+      "audio_checked": false,
+      "confirmation_needed": "文本差异和本评分下的错误数可以确认；实际发音、是否符合原文仍需听音及上下文核对。"
+    },
+    {
+      "id": "BAC009S0915W0458",
+      "reference": "游客骑着明孝陵驮碑龟趺拍照市民大煞风景",
+      "before": "游客骑着明孝陵驮碑龟贴拍照市民大煞风景",
+      "after": "游客骑着明孝陵驮碑龟贴拍照市民大厦封顶",
+      "before_errors": 1,
+      "after_errors": 4,
+      "delta_errors": 3,
+      "transition": "wrong->wrong",
+      "before_counts": {
+        "S": 1,
+        "D": 0,
+        "I": 0
+      },
+      "after_counts": {
+        "S": 4,
+        "D": 0,
+        "I": 0
+      },
+      "tags": [
+        "原错变更错",
+        "明确新增替换",
+        "词组变化"
+      ],
+      "changed_segments": [
+        {
+          "before": "大煞风景",
+          "after": "大厦封顶",
+          "description": "新增煞→厦、风→封、景→顶三处替换"
+        }
+      ],
+      "textual_interpretation": "两版都把龟趺写为龟贴，该既有错误未修复；SFT 又改变后半句的 3 字，1→4。输出变成另一词组是可观察事实，不等同已证明发生了幻觉。",
+      "audio_checked": false,
+      "confirmation_needed": "文本差异和本评分下的错误数可以确认；实际发音、是否符合原文仍需听音及上下文核对。"
+    },
+    {
+      "id": "BAC009S0768W0424",
+      "reference": "想不想他再次成家立室",
+      "before": "想不想她再次成家立室",
+      "after": "想不想她在此成家立室",
+      "before_errors": 1,
+      "after_errors": 3,
+      "delta_errors": 2,
+      "transition": "wrong->wrong",
+      "before_counts": {
+        "S": 1,
+        "D": 0,
+        "I": 0
+      },
+      "after_counts": {
+        "S": 3,
+        "D": 0,
+        "I": 0
+      },
+      "tags": [
+        "原错变更错",
+        "明确新增替换",
+        "同音或近音候选"
+      ],
+      "changed_segments": [
+        {
+          "before": "再次",
+          "after": "在此",
+          "description": "新增再→在、次→此两处替换"
+        }
+      ],
+      "textual_interpretation": "两版都把参考他写成她；新增变化是再次→在此，1→3。此例应把既有代词错误与新增词组错误分开。",
+      "audio_checked": false,
+      "confirmation_needed": "文本差异和本评分下的错误数可以确认；实际发音、是否符合原文仍需听音及上下文核对。"
+    },
+    {
+      "id": "BAC009S0765W0488",
+      "reference": "李彬彬喂大象喝水略显老态提醒网友夏天要补水",
+      "before": "李彬彬喂大象喝水略显老态提醒网友夏天要补水",
+      "after": "李冰冰喂大象喝水略显老态提醒网友夏天要补水",
+      "before_errors": 0,
+      "after_errors": 2,
+      "delta_errors": 2,
+      "transition": "correct->wrong",
+      "before_counts": {
+        "S": 0,
+        "D": 0,
+        "I": 0
+      },
+      "after_counts": {
+        "S": 2,
+        "D": 0,
+        "I": 0
+      },
+      "tags": [
+        "专名写法",
+        "同音或近音候选",
+        "参考文本歧义候选"
+      ],
+      "changed_segments": [
+        {
+          "before": "李彬彬",
+          "after": "李冰冰",
+          "description": "彬→冰出现两次，按字级评分新增 2 个替换"
+        }
+      ],
+      "textual_interpretation": "整句只改变人名写法，0→2。只能确认和当前参考李彬彬不一致；不能因李冰冰这一写法更熟悉就直接宣布参考错误。",
+      "audio_checked": false,
+      "confirmation_needed": "需听音确认彬/冰的音节，并结合人物身份及原始文本确认姓名；本审核未查外部人物资料。"
+    },
+    {
+      "id": "BAC009S0905W0196",
+      "reference": "引导各地鉴借示范区发展现代农业的好做法和好经验",
+      "before": "引导各地鉴借示范区发展现代农业的好做法和好经验",
+      "after": "引导各地借鉴示范区发展现代农业的好做法和好经验",
+      "before_errors": 0,
+      "after_errors": 2,
+      "delta_errors": 2,
+      "transition": "correct->wrong",
+      "before_counts": {
+        "S": 0,
+        "D": 0,
+        "I": 0
+      },
+      "after_counts": {
+        "S": 2,
+        "D": 0,
+        "I": 0
+      },
+      "tags": [
+        "词序变化",
+        "参考文本歧义候选",
+        "内容改写候选"
+      ],
+      "changed_segments": [
+        {
+          "before": "鉴借",
+          "after": "借鉴",
+          "description": "相邻两字交换，当前 Levenshtein 对齐记为 2 个替换"
+        }
+      ],
+      "textual_interpretation": "SFT 输出借鉴，与参考鉴借顺序相反，0→2。借鉴在该句中构成一种可理解的写法，但这只能提出核查候选，不能证明模型纠正了金标。",
+      "audio_checked": false,
+      "confirmation_needed": "需听音核对两字先后顺序，并检查原始转写是否忠实保留口误；不得自行修改本次 reference。"
+    },
+    {
+      "id": "BAC009S0765W0447",
+      "reference": "时年二三岁的杨柱军在北京抢劫杀害了一名出租车司机",
+      "before": "时年二三岁的杨柱军在北京抢劫杀害了一名出租车司机",
+      "after": "时年二十三岁的杨柱军在北京抢劫杀害了一名出租车司机",
+      "before_errors": 0,
+      "after_errors": 1,
+      "delta_errors": 1,
+      "transition": "correct->wrong",
+      "before_counts": {
+        "S": 0,
+        "D": 0,
+        "I": 0
+      },
+      "after_counts": {
+        "S": 0,
+        "D": 0,
+        "I": 1
+      },
+      "tags": [
+        "数字格式",
+        "明确新增插入",
+        "评分正规化敏感候选"
+      ],
+      "changed_segments": [
+        {
+          "before": "二三岁",
+          "after": "二十三岁",
+          "description": "新增一个十，按当前 CER 记 1 个插入"
+        }
+      ],
+      "textual_interpretation": "0→1 的全部变化是数字语段展开。当前 CER 不做 ITN，故二三与二十三不会合并；这是既定评分口径的敏感点，不是已证实的评分实现错误。",
+      "audio_checked": false,
+      "confirmation_needed": "需听音分辨是否实际读出十，以及二三是否为逐位数字转写规范；二三岁也可能具有另一语义，不能预先视作等价。"
+    },
+    {
+      "id": "BAC009S0913W0416",
+      "reference": "今天她出席活动",
+      "before": "今天她出席活动",
+      "after": "今天他出席活动",
+      "before_errors": 0,
+      "after_errors": 1,
+      "delta_errors": 1,
+      "transition": "correct->wrong",
+      "before_counts": {
+        "S": 0,
+        "D": 0,
+        "I": 0
+      },
+      "after_counts": {
+        "S": 1,
+        "D": 0,
+        "I": 0
+      },
+      "tags": [
+        "代词写法",
+        "同音候选",
+        "文本语境敏感"
+      ],
+      "changed_segments": [
+        {
+          "before": "今天她出席活动",
+          "after": "今天他出席活动",
+          "description": "她→他，新增 1 个替换"
+        }
+      ],
+      "textual_interpretation": "整句只改代词，0→1。普通话她/他为同音写法，单凭该音节无法确定性别指代；当前字级 CER 仍把它算错。",
+      "audio_checked": false,
+      "confirmation_needed": "需要核对上下文中的指代对象；听音只能确认音节，不能独立裁定她或他。"
+    },
+    {
+      "id": "BAC009S0765W0270",
+      "reference": "大多数游戏产品往往病毒式地成长",
+      "before": "大多数游戏产品往往病毒式地成长",
+      "after": "大多数游戏产品往往病毒式的成长",
+      "before_errors": 0,
+      "after_errors": 1,
+      "delta_errors": 1,
+      "transition": "correct->wrong",
+      "before_counts": {
+        "S": 0,
+        "D": 0,
+        "I": 0
+      },
+      "after_counts": {
+        "S": 1,
+        "D": 0,
+        "I": 0
+      },
+      "tags": [
+        "助词写法",
+        "同音或近音候选",
+        "文本语法敏感"
+      ],
+      "changed_segments": [
+        {
+          "before": "病毒式地成长",
+          "after": "病毒式的成长",
+          "description": "地→的，新增 1 个替换"
+        }
+      ],
+      "textual_interpretation": "0→1；其他文字不变，属于助词字形选择。仅靠文本不能确定这是发音识别变化还是字形选择变化。",
+      "audio_checked": false,
+      "confirmation_needed": "文本差异和本评分下的错误数可以确认；实际发音、是否符合原文仍需听音及上下文核对。"
+    },
+    {
+      "id": "BAC009S0905W0453",
+      "reference": "温州网讯在温医大附属育英儿童医院的重监护室里",
+      "before": "温州网讯在温医大附属育英儿童医院的重监护室里",
+      "after": "温州网讯在温医大附属育英儿童医院的重症监护室里",
+      "before_errors": 0,
+      "after_errors": 1,
+      "delta_errors": 1,
+      "transition": "correct->wrong",
+      "before_counts": {
+        "S": 0,
+        "D": 0,
+        "I": 0
+      },
+      "after_counts": {
+        "S": 0,
+        "D": 0,
+        "I": 1
+      },
+      "tags": [
+        "内容补全候选",
+        "明确新增插入",
+        "参考文本歧义候选"
+      ],
+      "changed_segments": [
+        {
+          "before": "重监护室",
+          "after": "重症监护室",
+          "description": "重后新增症，记 1 个插入"
+        }
+      ],
+      "textual_interpretation": "0→1 的全部变化是新增症。输出形成另一种常见短语，但未听音不能认定症是错误补全，也不能认定金标漏字。",
+      "audio_checked": false,
+      "confirmation_needed": "需听音判断是否实际读了症，并核查原始转写；若没读则属于新增内容，若读了则可能为参考漏字候选。"
+    },
+    {
+      "id": "BAC009S0770W0426",
+      "reference": "曾江谢贤四哥及胡枫修哥大谈往日情时",
+      "before": "曾江谢贤四哥及胡枫修哥大谈往日情时",
+      "after": "曾江谢贤四哥及胡枫休哥大谈往日情情时",
+      "before_errors": 0,
+      "after_errors": 2,
+      "delta_errors": 2,
+      "transition": "correct->wrong",
+      "before_counts": {
+        "S": 0,
+        "D": 0,
+        "I": 0
+      },
+      "after_counts": {
+        "S": 1,
+        "D": 0,
+        "I": 1
+      },
+      "tags": [
+        "重复",
+        "明确新增插入",
+        "专名或称呼写法",
+        "同音候选"
+      ],
+      "changed_segments": [
+        {
+          "before": "修哥",
+          "after": "休哥",
+          "description": "新增修→休 1 个替换"
+        },
+        {
+          "before": "往日情时",
+          "after": "往日情情时",
+          "description": "新增一个情，记 1 个插入"
+        }
+      ],
+      "textual_interpretation": "0→2 由两种变化组成：称呼写法修→休，以及句尾情字重复。重复是相对 baseline 和参考的可见新增，是否与实际读音不符仍须听音。",
+      "audio_checked": false,
+      "confirmation_needed": "文本差异和本评分下的错误数可以确认；实际发音、是否符合原文仍需听音及上下文核对。"
+    },
+    {
+      "id": "BAC009S0902W0288",
+      "reference": "而这对于未来苹果保持高利润和利润率至关重要",
+      "before": "而这对于未来苹果保持高利润和利润率至关重要",
+      "after": "而这对未来苹果保持高利润和利润率至关重要",
+      "before_errors": 0,
+      "after_errors": 1,
+      "delta_errors": 1,
+      "transition": "correct->wrong",
+      "before_counts": {
+        "S": 0,
+        "D": 0,
+        "I": 0
+      },
+      "after_counts": {
+        "S": 0,
+        "D": 1,
+        "I": 0
+      },
+      "tags": [
+        "明确新增删除",
+        "功能词删减"
+      ],
+      "changed_segments": [
+        {
+          "before": "而这对于未来",
+          "after": "而这对未来",
+          "description": "删除于，新增 1 个删除错误"
+        }
+      ],
+      "textual_interpretation": "0→1；SFT 去掉于，句意仍可理解，但本评分按逐字转写，不能因为句子通顺就忽略漏字。",
+      "audio_checked": false,
+      "confirmation_needed": "文本差异和本评分下的错误数可以确认；实际发音、是否符合原文仍需听音及上下文核对。"
+    }
+  ],
+  "representative_improvements": [
+    {
+      "id": "BAC009S0766W0363",
+      "reference": "她所选择的新搭档就是法国猛男马塞洛特",
+      "before": "他所选择的新搭档就是法国猛男曼萨洛特",
+      "after": "他所选择的新搭档就是法国猛男马塞洛特",
+      "before_errors": 3,
+      "after_errors": 1,
+      "delta_errors": -2,
+      "transition": "wrong->wrong",
+      "before_counts": {
+        "S": 3,
+        "D": 0,
+        "I": 0
+      },
+      "after_counts": {
+        "S": 1,
+        "D": 0,
+        "I": 0
+      },
+      "tags": [
+        "专名写法改善",
+        "原错部分修复"
+      ],
+      "changed_segments": [
+        {
+          "before": "曼萨洛特",
+          "after": "马塞洛特",
+          "description": "曼→马、萨→塞两处恢复为参考写法"
+        }
+      ],
+      "textual_interpretation": "3→1；人名语段修复 2 字，仍保留他/她的 1 个错误。不是只挑整句变全对的例子。",
+      "audio_checked": false,
+      "confirmation_needed": "文本差异和本评分下的错误数可以确认；实际发音、是否符合原文仍需听音及上下文核对。"
+    },
+    {
+      "id": "BAC009S0766W0381",
+      "reference": "随后冰迷们自发为其网上募集资金",
+      "before": "随后冰迷们自发为其网上募集丝巾",
+      "after": "随后冰迷们自发为其网上募集资金",
+      "before_errors": 2,
+      "after_errors": 0,
+      "delta_errors": -2,
+      "transition": "wrong->correct",
+      "before_counts": {
+        "S": 2,
+        "D": 0,
+        "I": 0
+      },
+      "after_counts": {
+        "S": 0,
+        "D": 0,
+        "I": 0
+      },
+      "tags": [
+        "词组替换改善",
+        "整句恢复匹配"
+      ],
+      "changed_segments": [
+        {
+          "before": "募集丝巾",
+          "after": "募集资金",
+          "description": "丝→资、巾→金两处恢复为参考"
+        }
+      ],
+      "textual_interpretation": "2→0；资金语段完全恢复，句子其余部分不变。",
+      "audio_checked": false,
+      "confirmation_needed": "文本差异和本评分下的错误数可以确认；实际发音、是否符合原文仍需听音及上下文核对。"
+    },
+    {
+      "id": "BAC009S0768W0471",
+      "reference": "奉化江口儒江村村委会却带头盖起了违法建筑",
+      "before": "奉华江口如江村村委会却带头盖起了违法建筑",
+      "after": "奉化江口儒江村村委会却带头盖起了违法建筑",
+      "before_errors": 2,
+      "after_errors": 0,
+      "delta_errors": -2,
+      "transition": "wrong->correct",
+      "before_counts": {
+        "S": 2,
+        "D": 0,
+        "I": 0
+      },
+      "after_counts": {
+        "S": 0,
+        "D": 0,
+        "I": 0
+      },
+      "tags": [
+        "地名写法改善",
+        "整句恢复匹配"
+      ],
+      "changed_segments": [
+        {
+          "before": "奉华",
+          "after": "奉化",
+          "description": "华→化恢复为参考"
+        },
+        {
+          "before": "如江村",
+          "after": "儒江村",
+          "description": "如→儒恢复为参考"
+        }
+      ],
+      "textual_interpretation": "2→0；地名语段中两处字形恢复，说明专名相关变化有改善也有退化。",
+      "audio_checked": false,
+      "confirmation_needed": "文本差异和本评分下的错误数可以确认；实际发音、是否符合原文仍需听音及上下文核对。"
+    },
+    {
+      "id": "BAC009S0904W0353",
+      "reference": "回忆起当时临危受命接班队长一职的情况",
+      "before": "回忆起当时林薇受命接班队长一职的情况",
+      "after": "回忆起当时临危受命接班队长一职的情况",
+      "before_errors": 2,
+      "after_errors": 0,
+      "delta_errors": -2,
+      "transition": "wrong->correct",
+      "before_counts": {
+        "S": 2,
+        "D": 0,
+        "I": 0
+      },
+      "after_counts": {
+        "S": 0,
+        "D": 0,
+        "I": 0
+      },
+      "tags": [
+        "词组替换改善",
+        "整句恢复匹配"
+      ],
+      "changed_segments": [
+        {
+          "before": "林薇受命",
+          "after": "临危受命",
+          "description": "林→临、薇→危两处恢复为参考"
+        }
+      ],
+      "textual_interpretation": "2→0；同样是读音相近的不同词组，但此处 SFT 转向参考写法。",
+      "audio_checked": false,
+      "confirmation_needed": "文本差异和本评分下的错误数可以确认；实际发音、是否符合原文仍需听音及上下文核对。"
+    },
+    {
+      "id": "BAC009S0770W0459",
+      "reference": "村民地里二六零馀棵正在挂果的梨树被连根推倒",
+      "before": "村民地里二六零棵馀棵正在挂果的梨树被连根推倒",
+      "after": "村民地里二六零馀棵正在挂果的梨树被连根推倒",
+      "before_errors": 1,
+      "after_errors": 0,
+      "delta_errors": -1,
+      "transition": "wrong->correct",
+      "before_counts": {
+        "S": 0,
+        "D": 0,
+        "I": 1
+      },
+      "after_counts": {
+        "S": 0,
+        "D": 0,
+        "I": 0
+      },
+      "tags": [
+        "重复或多字减少",
+        "整句恢复匹配"
+      ],
+      "changed_segments": [
+        {
+          "before": "二六零棵馀棵",
+          "after": "二六零馀棵",
+          "description": "删除 baseline 多出的第一个棵"
+        }
+      ],
+      "textual_interpretation": "1→0；原有插入被移除。这与退化样例中新出现重复字的现象并存，不能概括成所有句子都更重复。",
+      "audio_checked": false,
+      "confirmation_needed": "文本差异和本评分下的错误数可以确认；实际发音、是否符合原文仍需听音及上下文核对。"
+    }
+  ],
+  "normalization_and_reference_candidates": [
+    {
+      "id": "BAC009S0901W0187",
+      "reference": "农业现代化水平显着提升",
+      "before": "农业现代化水平显着提升",
+      "after": "农业现代化水平显著提升",
+      "before_errors": 0,
+      "after_errors": 1,
+      "delta_errors": 1,
+      "transition": "correct->wrong",
+      "before_counts": {
+        "S": 0,
+        "D": 0,
+        "I": 0
+      },
+      "after_counts": {
+        "S": 1,
+        "D": 0,
+        "I": 0
+      },
+      "tags": [
+        "字形或词形选择",
+        "评分正规化敏感候选"
+      ],
+      "changed_segments": [
+        {
+          "before": "显着",
+          "after": "显著",
+          "description": "着→著，0→1"
+        }
+      ],
+      "textual_interpretation": "NFKC 不把着/著合并，参考是显着，输出显著；字级计错明确，是否应作为同一表达接受需另立转写规范。",
+      "audio_checked": false,
+      "confirmation_needed": "核对规范及上下文。只听音通常不足以解决同读音字形选择，不能据此把当前 CER 判成实现 bug。"
+    },
+    {
+      "id": "BAC009S0902W0190",
+      "reference": "土地产出率劳动生产率资源利用率显着提高",
+      "before": "土地产出率劳动生产率资源利用率显着提高",
+      "after": "土地产出率劳动生产率资源利用率显著提高",
+      "before_errors": 0,
+      "after_errors": 1,
+      "delta_errors": 1,
+      "transition": "correct->wrong",
+      "before_counts": {
+        "S": 0,
+        "D": 0,
+        "I": 0
+      },
+      "after_counts": {
+        "S": 1,
+        "D": 0,
+        "I": 0
+      },
+      "tags": [
+        "字形或词形选择",
+        "评分正规化敏感候选"
+      ],
+      "changed_segments": [
+        {
+          "before": "显着提高",
+          "after": "显著提高",
+          "description": "着→著，0→1"
+        }
+      ],
+      "textual_interpretation": "与上一例相同字形方向在另一 ID 再次出现；仍须按当前固定规则计 1 错，不单方面合并字形。",
+      "audio_checked": false,
+      "confirmation_needed": "文本差异和本评分下的错误数可以确认；实际发音、是否符合原文仍需听音及上下文核对。"
+    },
+    {
+      "id": "BAC009S0907W0425",
+      "reference": "据香港媒体报导",
+      "before": "据香港媒体报导",
+      "after": "据香港媒体报道",
+      "before_errors": 0,
+      "after_errors": 1,
+      "delta_errors": 1,
+      "transition": "correct->wrong",
+      "before_counts": {
+        "S": 0,
+        "D": 0,
+        "I": 0
+      },
+      "after_counts": {
+        "S": 1,
+        "D": 0,
+        "I": 0
+      },
+      "tags": [
+        "词形或写法选择",
+        "评分正规化敏感候选"
+      ],
+      "changed_segments": [
+        {
+          "before": "报导",
+          "after": "报道",
+          "description": "导→道，0→1"
+        }
+      ],
+      "textual_interpretation": "两个写法仅差一字；其实际发音和语义可能相近，当前参考精确匹配仍计错。不能仅凭通顺程度裁定哪个写法更忠实。",
+      "audio_checked": false,
+      "confirmation_needed": "文本差异和本评分下的错误数可以确认；实际发音、是否符合原文仍需听音及上下文核对。"
+    },
+    {
+      "id": "BAC009S0915W0466",
+      "reference": "称他们曾在这里被人游说注册了一游戏平台的账户",
+      "before": "称他们曾在这里被人游说注册了一游戏平台的账户",
+      "after": "称他们曾在这里被人游说注册了一游戏平台的帐户",
+      "before_errors": 0,
+      "after_errors": 1,
+      "delta_errors": 1,
+      "transition": "correct->wrong",
+      "before_counts": {
+        "S": 0,
+        "D": 0,
+        "I": 0
+      },
+      "after_counts": {
+        "S": 1,
+        "D": 0,
+        "I": 0
+      },
+      "tags": [
+        "词形或写法选择",
+        "评分正规化敏感候选"
+      ],
+      "changed_segments": [
+        {
+          "before": "账户",
+          "after": "帐户",
+          "description": "账→帐，0→1"
+        }
+      ],
+      "textual_interpretation": "字形变化不会被 NFKC、去标点或去空白规则折叠；是否允许异体或习惯用字需要明确规范，不能临时改分。",
+      "audio_checked": false,
+      "confirmation_needed": "文本差异和本评分下的错误数可以确认；实际发音、是否符合原文仍需听音及上下文核对。"
+    },
+    {
+      "id": "BAC009S0769W0187",
+      "reference": "并进而对城投债券进行唱空或做空",
+      "before": "并进而对城投债券进行唱空或做空",
+      "after": "并进而对城投债劵进行唱空或做空",
+      "before_errors": 0,
+      "after_errors": 1,
+      "delta_errors": 1,
+      "transition": "correct->wrong",
+      "before_counts": {
+        "S": 0,
+        "D": 0,
+        "I": 0
+      },
+      "after_counts": {
+        "S": 1,
+        "D": 0,
+        "I": 0
+      },
+      "tags": [
+        "字形混淆",
+        "参考规范一致性候选"
+      ],
+      "changed_segments": [
+        {
+          "before": "债券",
+          "after": "债劵",
+          "description": "券→劵，0→1"
+        }
+      ],
+      "textual_interpretation": "本例参考是债券，SFT 债劵计错；同一测试集另一些参考却使用债劵，因此输出朝此字形变化可同时被奖罚。不要未经审校就称为统一的声学能力退化。",
+      "audio_checked": false,
+      "confirmation_needed": "需要检查参考转写规范和字形一致性；这是文本层面候选，不表示已确认参考错误。"
+    },
+    {
+      "id": "BAC009S0770W0215",
+      "reference": "城投债劵作为准市政债劵仍将是有效的融资工具",
+      "before": "城投债券作为准市政债券仍将是有效的融资工具",
+      "after": "城投债劵作为准市政债劵仍将是有效的融资工具",
+      "before_errors": 2,
+      "after_errors": 0,
+      "delta_errors": -2,
+      "transition": "wrong->correct",
+      "before_counts": {
+        "S": 2,
+        "D": 0,
+        "I": 0
+      },
+      "after_counts": {
+        "S": 0,
+        "D": 0,
+        "I": 0
+      },
+      "tags": [
+        "字形选择计分改善",
+        "参考规范一致性候选"
+      ],
+      "changed_segments": [
+        {
+          "before": "债券",
+          "after": "债劵",
+          "description": "两处券→劵，2→0"
+        }
+      ],
+      "textual_interpretation": "此例按固定 reference 从 2 错变 0，但改变主要是追随参考债劵写法；应与明显语段恢复类改善分开解释。",
+      "audio_checked": false,
+      "confirmation_needed": "文本差异和本评分下的错误数可以确认；实际发音、是否符合原文仍需听音及上下文核对。"
+    },
+    {
+      "id": "BAC009S0903W0172",
+      "reference": "首套房贷利润优惠也开始减少",
+      "before": "首套房贷利率优惠也开始减少",
+      "after": "首套房贷利润优惠也开始减少",
+      "before_errors": 1,
+      "after_errors": 0,
+      "delta_errors": -1,
+      "transition": "wrong->correct",
+      "before_counts": {
+        "S": 1,
+        "D": 0,
+        "I": 0
+      },
+      "after_counts": {
+        "S": 0,
+        "D": 0,
+        "I": 0
+      },
+      "tags": [
+        "参考文本歧义候选",
+        "计分改善不等于语义改善"
+      ],
+      "changed_segments": [
+        {
+          "before": "房贷利率优惠",
+          "after": "房贷利润优惠",
+          "description": "率→润，1→0"
+        }
+      ],
+      "textual_interpretation": "计分改善事实成立；reference 使用利润而 baseline 使用利率，仅凭常识或语义通顺不能断言金标错误，也不能将此例当作无歧义的语义改善。",
+      "audio_checked": false,
+      "confirmation_needed": "需听音及原始文本核查率/润；评分继续保留官方原文。"
+    }
+  ],
+  "source_sha256": {
+    "baseline_20261012/fireredasr_llm_aishell/test_predictions.jsonl": "a4c43ad0a23deae604bf4fee14a666b791fdd0d1908dbdd1678a2cbb9aca6ed4",
+    "experiments/fireredasr_llm_aishell/test_predictions.jsonl": "912faacb48280ce5c51835c2a0282c8182851df95338bab709a15c1c893dded3",
+    "baseline_20261012/fireredasr_llm_aishell/test_metrics.json": "211c7017119a2d005f1ea534a3065c2879f1ff7f75d56b8d5c1189415faa17bb",
+    "experiments/fireredasr_llm_aishell/test_metrics.json": "681c95c7982e50a688a31bf7ed5f0c9500ce15722d1fe900c039b7bcd398d9e7",
+    "data/aishell/test.jsonl": "f5845d431dab5fa109b2f5c3088a8a6ad2b842d6f9f6ec7b6d2cd14895ced8f7"
+  },
+  "independent_audit_sha256": "9983e1c317c82f088ebaaa6c6e0547afaece7b52900459f2997a2dc4ac234635",
+  "qualitative_review_sha256": "e1d25313e848ffe5052fea99de84bd10a544bb58d2b9112212d5489ba9e16d78",
+  "artifacts_directory": "output/asr_benchmark_20261010/case_analysis_20261012",
+  "interpretation_boundaries": [
+    "129 and 83 are sums of positive/negative per-utterance edit-distance differences, not counts of every individual newly introduced/fixed character error; within-utterance fixes and regressions can cancel.",
+    "Exact-correct means equality to the normalized official reference, not a guarantee of acoustic correctness.",
+    "Specific character substitutions depend on one valid optimal alignment; ties can change error allocation while CER remains invariant.",
+    "Text examples alone cannot establish acoustic truth, correct homophone spelling/names, reference annotation quality, or a causal training mechanism. No audio listening or acoustic verification was performed.",
+    "Bootstrap intervals describe held-out utterance/speaker resampling sensitivity of this paired checkpoint comparison, not training-seed variance or uncertainty of the fixed official-test arithmetic. Speaker cluster inference has only 20 observed clusters."
+  ]
+}

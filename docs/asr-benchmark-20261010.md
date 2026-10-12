@@ -24,20 +24,31 @@ LibriSpeech 三个训练划分分别为 28,539、104,014、148,688 条；表中�
 
 **FireRed 参数解释：** `args.json` 的 `lora_dropout=0.05`、`freeze_vit=true`、`freeze_aligner=true` 并非该 custom tuner 的实际行为。Swift 4.5.3 的 `lora_llm` 构造 PEFT 配置时未传 dropout，实际 adapter 配置为 0.0；它同时显式解冻音频编码器与投影层。以上表格以 adapter 配置、tuner 实现和保存/重载权重检查为准。
 
-测试均为 batch 16、greedy（不采样、单 beam）、最多新增 512 tokens。Qwen 使用官方 SDK、空 context 和语料对应语种；FireRed 使用固定转写提示、真实音频长度与显式 attention mask，加载官方预训练增量后再加载本次 LoRA 和音频侧权重。模型输入不含 reference；reference 仅在生成完成后用于评分。
+测试均为 batch 16、greedy（不采样、单 beam）、最多新增 512 tokens。Qwen 使用官方 SDK、空 context 和语料对应语种；FireRed 使用固定转写提示、真实音频长度与显式 attention mask。评测 SFT 模型时，Qwen 额外合并本次 LoRA，FireRed 在官方预训练增量基础上加载本次 LoRA 和音频侧权重。模型输入不含 reference；reference 仅在生成完成后用于评分。
 
-| 模型 | AISHELL-1 test CER↓ | LibriSpeech test-clean WER↓ | LibriSpeech test-other WER↓ |
-| --- | ---: | ---: | ---: |
-| Qwen3-ASR-0.6B | **1.6656%** | **1.9971%** | **4.4249%** |
-| FireRedASR-LLM-L | **0.8113%** | **1.5879%** | **3.5362%** |
+2026-10-12 补测了两个模型在 SFT 前的原始性能。原始权重与各组 SFT 的初始化权重相同；FireRed 保留官方预训练增量/LoRA，评测时不加载本项目训练产生的 LoRA 或 `vit.safetensors`。四组原始权重评测全部正常退出，解码脚本、模型配置、完整测试 manifest、语种/提示、seed、batch、生成策略、精度、attention 和依赖版本逐项配对一致，仅 adapter 加载字段不同。
 
-六项测试均覆盖完整官方 ID，原始 reference 逐条一致，生成截断数为 0。CER 对 reference/hypothesis 同施 NFKC、小写、去 Unicode 标点和空白，不做 ITN；WER 使用 Transformers 4.57.6 的 `EnglishTextNormalizer({})`（含其数字等正规化，拼写映射为空）。指标为语料级 `100×Σ(S+D+I)/Σ参考字数或词数`，不是逐句比例平均；另保留不做 ITN 的 basic WER。
+| 模型 | 完整测试集 | 指标 | 原始权重 | SFT 后 | 降低（百分点） | 相对错误率降低 |
+| --- | --- | --- | ---: | ---: | ---: | ---: |
+| Qwen3-ASR-0.6B | AISHELL-1 test | CER | 2.1123% | 1.6656% | +0.4467 | +21.15% |
+| Qwen3-ASR-0.6B | LibriSpeech test-clean | WER | 2.2536% | 1.9971% | +0.2565 | +11.38% |
+| Qwen3-ASR-0.6B | LibriSpeech test-other | WER | 4.5441% | 4.4249% | +0.1191 | +2.62% |
+| FireRedASR-LLM-L | AISHELL-1 test | CER | 0.7674% | 0.8113% | -0.0439 | -5.72% |
+| FireRedASR-LLM-L | LibriSpeech test-clean | WER | 1.7048% | 1.5879% | +0.1169 | +6.86% |
+| FireRedASR-LLM-L | LibriSpeech test-other | WER | 3.8009% | 3.5362% | +0.2647 | +6.97% |
+
+“降低（百分点）”为原始错误率减去 SFT 后错误率；“相对错误率降低”为 `100 × (原始错误率 − SFT 后错误率) / 原始错误率`。正数表示改善，负数表示退化；均由未四舍五入的指标计算。
+
+本次单 epoch SFT 的六项指标中，五项错误率下降；FireRed AISHELL-1 CER 从 0.7674% 升至 0.8113%，增加 0.0439 个百分点，相对增加 5.72%。该退化按实测值保留。
+
+SFT 前后两侧的六项测试均覆盖完整官方 ID，原始 reference 逐条一致，生成截断数均为 0；两侧全部测试句子的 S/D/I 均已独立复算。CER 对 reference/hypothesis 同施 NFKC、小写、去 Unicode 标点和空白，不做 ITN；WER 使用 Transformers 4.57.6 的 `EnglishTextNormalizer({})`（含其数字等正规化，拼写映射为空）。指标为语料级 `100×Σ(S+D+I)/Σ参考字数或词数`，不是逐句比例平均；另保留不做 ITN 的 basic WER。
 
 `output/asr_benchmark_20261010/` 下的 `experiment-plan.json`、`data_inventory.json`、`performance.json` 和逐组工件记录源码/脚本、manifest、预测及 adapter 的 SHA-256；FireRed 还记录音频侧权重 hash。大型原始模型文件主要记录大小和修改时间，未对全部基座权重或全部 WAV 做内容 hash，不能宣称完整字节级复现校验。
 
 FireRed AISHELL 的首次测试因 fresh `--resume` 状态判断失败；修复解码启动逻辑并通过 11 项回归检查后，复用已完成的 `checkpoint-7507` 单独测试，没有重新训练或替换训练结果。过程保存在 `evaluation-retry.json`。
 
-这组数字描述上述训练和评分条件；未评测未微调 baseline，不主张 SFT 带来提升，也不据不同模型规模、音频冻结范围和 dropout 的结果推断架构优劣。
-
+这组对比描述本次单 epoch、固定训练 seed 和评分条件下的实测变化。未估计多次训练的不确定性；模型规模、音频冻结范围和 dropout 各不相同，因此不据此推断架构优劣。
 
 [机器可读结果与运行时哈希](asr-benchmark-20261010.json)包含完整精度指标、错误计数、数据划分、实际 adapter 配置和任务记录。训练入口为 [Qwen Bash 示例](../examples/qwen3_asr/sft.sh) 与 [FireRed Bash 示例](../examples/fireredasr_llm/sft.sh)；完整日志、评分脚本、逐句预测和 checkpoint 保存在本地 `output/asr_benchmark_20261010/`。GitHub 保存实验记录与汇总结果。
+
+原始权重的任务记录、逐句预测、评分及独立配对审核保存在本地 `output/asr_benchmark_20261010/baseline_20261012/`；对应计数、哈希、对比公式和全精度指标同步到上述 JSON。

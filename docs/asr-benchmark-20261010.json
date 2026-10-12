@@ -14,7 +14,7 @@
   },
   "epochs": 1,
   "effective_batch_size": 16,
-  "baseline_included": false,
+  "baseline_included": true,
   "artifacts_directory": "output/asr_benchmark_20261010",
   "reference_provenance": {
     "AISHELL/AISHELL-1": {
@@ -539,5 +539,441 @@
     "decoder_sha256": "4db3f94567ba863210e89abcf83407945662bf968cea825a8d6269b647eb2899",
     "regression_tests_passed": 11,
     "evaluation_job_id": "job-179160945367053552396-jiaqi-guo"
-  }
+  },
+  "baseline_evaluation": {
+    "date": "2026-10-12",
+    "status": "passed",
+    "experiments_passed": 4,
+    "test_metrics_passed": 6,
+    "source_commit": "c722c320973f6d54eff960cf2e03b69f8e37fc34",
+    "training_repeated": false,
+    "sft_adapter_loaded": false,
+    "artifacts_directory": "output/asr_benchmark_20261010/baseline_20261012",
+    "scripts_sha256": {
+      "run_baseline.sh": "e470d6c266c82b99795ad9dac3fa3ca364913804899093c81ce49de76b923a56",
+      "environment.sh": "15eefcd6fcbd65956d2eba5948a9749200a558f98766d72b0f773f48054917b0",
+      "qwen_decode.py": "c06867b73f56d85a2dd6fc732ce6224913a9d09c01e2d7c073d7d665e293503f",
+      "firered_decode.py": "4db3f94567ba863210e89abcf83407945662bf968cea825a8d6269b647eb2899",
+      "score.py": "b1bc692c138d645dfa80c8636713ae5c9588462610fa9de9765aaba6e5beef08"
+    },
+    "independent_audit_sha256": "3f309b0e8fe212aa21766dcb6cf53dd0c001d00f188a10eddba6bf0a5f2e07ba",
+    "definition": "Released ASR weights used to initialize SFT. FireRed retains its official pretrained delta/LoRA; no project SFT adapter or vit checkpoint is loaded.",
+    "pairing": "Configuration is identical to SFT evaluation after removing only adapter identity/loading fields.",
+    "experiments": [
+      {
+        "case": "qwen3_asr_aishell",
+        "model": "Qwen3-ASR-0.6B",
+        "corpus": "aishell",
+        "job_id": "job-179176926347019177132-jiaqi-guo",
+        "status": "passed",
+        "exit_code": 0,
+        "tests": [
+          {
+            "split": "test",
+            "metric": "cer",
+            "utterances": 7176,
+            "error_rate_percent": 2.112346680666253,
+            "reference_units": 104765,
+            "S": 2056,
+            "D": 79,
+            "I": 78,
+            "errors": 2213,
+            "truncated_samples": 0,
+            "normalization": {
+              "method": "NFKC + lowercase + remove Unicode punctuation (category P*) and whitespace",
+              "applied_to": "reference and hypothesis",
+              "inverse_text_normalization": false,
+              "symbols": "retained"
+            },
+            "manifest_sha256": "f5845d431dab5fa109b2f5c3088a8a6ad2b842d6f9f6ec7b6d2cd14895ced8f7",
+            "predictions_sha256": "8c6fd0716d034d704223d843f3a9f2c31b0f08fd3953a23eeeaf26b57c432618",
+            "metadata_sha256": "0fe7cdb5fb8e3a8a11d6aefb1a9c1da410cfd889e0ff62fcef1008ca57a243b1",
+            "generation": {
+              "max_new_tokens": 512,
+              "do_sample": false,
+              "num_beams": 1,
+              "num_return_sequences": 1,
+              "temperature": null,
+              "top_p": null,
+              "top_k": null,
+              "repetition_penalty": 1.0,
+              "use_cache": true,
+              "eos_token_id": [
+                151645,
+                151643
+              ]
+            },
+            "batch_size": 16,
+            "driver_sha256": "c06867b73f56d85a2dd6fc732ce6224913a9d09c01e2d7c073d7d665e293503f",
+            "pairing_verified": true
+          }
+        ]
+      },
+      {
+        "case": "qwen3_asr_librispeech",
+        "model": "Qwen3-ASR-0.6B",
+        "corpus": "librispeech",
+        "job_id": "job-179176929295414189066-jiaqi-guo",
+        "status": "passed",
+        "exit_code": 0,
+        "tests": [
+          {
+            "split": "test-clean",
+            "metric": "wer",
+            "utterances": 2620,
+            "error_rate_percent": 2.2535689365794784,
+            "reference_units": 53027,
+            "S": 939,
+            "D": 162,
+            "I": 94,
+            "errors": 1195,
+            "truncated_samples": 0,
+            "normalization": {
+              "method": "transformers.models.whisper.english_normalizer.EnglishTextNormalizer({})",
+              "transformers_version": "4.57.6",
+              "english_spelling_mapping": {},
+              "applied_to": "reference and hypothesis",
+              "inverse_text_normalization": "included in upstream EnglishTextNormalizer"
+            },
+            "manifest_sha256": "6b4d07ecdda81fc953dca3536a54bcd68a61da2a70f688b381ccff91007ad32c",
+            "predictions_sha256": "c3272269fd39fbc2ba9179c86b12628e4b4d352d566123cdce69cd057556af69",
+            "metadata_sha256": "472664f3eaadb4ebddf5a62e6425c93908e25d6b2b50ddccdb0504b02cdf3d22",
+            "generation": {
+              "max_new_tokens": 512,
+              "do_sample": false,
+              "num_beams": 1,
+              "num_return_sequences": 1,
+              "temperature": null,
+              "top_p": null,
+              "top_k": null,
+              "repetition_penalty": 1.0,
+              "use_cache": true,
+              "eos_token_id": [
+                151645,
+                151643
+              ]
+            },
+            "batch_size": 16,
+            "driver_sha256": "c06867b73f56d85a2dd6fc732ce6224913a9d09c01e2d7c073d7d665e293503f",
+            "pairing_verified": true
+          },
+          {
+            "split": "test-other",
+            "metric": "wer",
+            "utterances": 2939,
+            "error_rate_percent": 4.544079270829394,
+            "reference_units": 52882,
+            "S": 1892,
+            "D": 267,
+            "I": 244,
+            "errors": 2403,
+            "truncated_samples": 0,
+            "normalization": {
+              "method": "transformers.models.whisper.english_normalizer.EnglishTextNormalizer({})",
+              "transformers_version": "4.57.6",
+              "english_spelling_mapping": {},
+              "applied_to": "reference and hypothesis",
+              "inverse_text_normalization": "included in upstream EnglishTextNormalizer"
+            },
+            "manifest_sha256": "4e26d011da24567a7f387c7e8b02c6d931eec40d1c7693dbb78c784f4f17c4f3",
+            "predictions_sha256": "e6fd24ecf58b7ecf42fbb7c197bd5555afd857e78f09835b72214232e1cd31c5",
+            "metadata_sha256": "3464dcbad6f27616764df74e265d787a441fbf51d311c9c1e8577ecd4bac9844",
+            "generation": {
+              "max_new_tokens": 512,
+              "do_sample": false,
+              "num_beams": 1,
+              "num_return_sequences": 1,
+              "temperature": null,
+              "top_p": null,
+              "top_k": null,
+              "repetition_penalty": 1.0,
+              "use_cache": true,
+              "eos_token_id": [
+                151645,
+                151643
+              ]
+            },
+            "batch_size": 16,
+            "driver_sha256": "c06867b73f56d85a2dd6fc732ce6224913a9d09c01e2d7c073d7d665e293503f",
+            "pairing_verified": true
+          }
+        ]
+      },
+      {
+        "case": "fireredasr_llm_aishell",
+        "model": "FireRedASR-LLM-L",
+        "corpus": "aishell",
+        "job_id": "job-179176928804297728287-jiaqi-guo",
+        "status": "passed",
+        "exit_code": 0,
+        "tests": [
+          {
+            "split": "test",
+            "metric": "cer",
+            "utterances": 7176,
+            "error_rate_percent": 0.7674318713310743,
+            "reference_units": 104765,
+            "S": 689,
+            "D": 60,
+            "I": 55,
+            "errors": 804,
+            "truncated_samples": 0,
+            "normalization": {
+              "method": "NFKC + lowercase + remove Unicode punctuation (category P*) and whitespace",
+              "applied_to": "reference and hypothesis",
+              "inverse_text_normalization": false,
+              "symbols": "retained"
+            },
+            "manifest_sha256": "f5845d431dab5fa109b2f5c3088a8a6ad2b842d6f9f6ec7b6d2cd14895ced8f7",
+            "predictions_sha256": "a4c43ad0a23deae604bf4fee14a666b791fdd0d1908dbdd1678a2cbb9aca6ed4",
+            "metadata_sha256": "ff1f8dacf3e54e9996d6afe64cf469a0eebf9583d7d7f53b7f8e680fcbd706f6",
+            "generation": {
+              "do_sample": false,
+              "num_beams": 1,
+              "repetition_penalty": 1.0,
+              "use_cache": true
+            },
+            "batch_size": 16,
+            "driver_sha256": "4db3f94567ba863210e89abcf83407945662bf968cea825a8d6269b647eb2899",
+            "pairing_verified": true
+          }
+        ]
+      },
+      {
+        "case": "fireredasr_llm_librispeech",
+        "model": "FireRedASR-LLM-L",
+        "corpus": "librispeech",
+        "job_id": "job-179176929735372620994-jiaqi-guo",
+        "status": "passed",
+        "exit_code": 0,
+        "tests": [
+          {
+            "split": "test-clean",
+            "metric": "wer",
+            "utterances": 2620,
+            "error_rate_percent": 1.704791898466819,
+            "reference_units": 53027,
+            "S": 710,
+            "D": 76,
+            "I": 118,
+            "errors": 904,
+            "truncated_samples": 0,
+            "normalization": {
+              "method": "transformers.models.whisper.english_normalizer.EnglishTextNormalizer({})",
+              "transformers_version": "4.57.6",
+              "english_spelling_mapping": {},
+              "applied_to": "reference and hypothesis",
+              "inverse_text_normalization": "included in upstream EnglishTextNormalizer"
+            },
+            "manifest_sha256": "6b4d07ecdda81fc953dca3536a54bcd68a61da2a70f688b381ccff91007ad32c",
+            "predictions_sha256": "3fde3a653534628a49601f0af0b7050918c42d9a400122e090f1d07c330ff9d3",
+            "metadata_sha256": "d4a195d347f30bce23dd864a26b371eceeac7566b76f97a200709a9a4c4365a7",
+            "generation": {
+              "do_sample": false,
+              "num_beams": 1,
+              "repetition_penalty": 1.0,
+              "use_cache": true
+            },
+            "batch_size": 16,
+            "driver_sha256": "4db3f94567ba863210e89abcf83407945662bf968cea825a8d6269b647eb2899",
+            "pairing_verified": true
+          },
+          {
+            "split": "test-other",
+            "metric": "wer",
+            "utterances": 2939,
+            "error_rate_percent": 3.8009152452630386,
+            "reference_units": 52882,
+            "S": 1616,
+            "D": 151,
+            "I": 243,
+            "errors": 2010,
+            "truncated_samples": 0,
+            "normalization": {
+              "method": "transformers.models.whisper.english_normalizer.EnglishTextNormalizer({})",
+              "transformers_version": "4.57.6",
+              "english_spelling_mapping": {},
+              "applied_to": "reference and hypothesis",
+              "inverse_text_normalization": "included in upstream EnglishTextNormalizer"
+            },
+            "manifest_sha256": "4e26d011da24567a7f387c7e8b02c6d931eec40d1c7693dbb78c784f4f17c4f3",
+            "predictions_sha256": "962e47772939cefa037a866bd8c8a41be61989304dd30665c98927c102ebb77b",
+            "metadata_sha256": "59a68051243f75fc6cd2754943de075af98bac351022145307b1011d1835e52b",
+            "generation": {
+              "do_sample": false,
+              "num_beams": 1,
+              "repetition_penalty": 1.0,
+              "use_cache": true
+            },
+            "batch_size": 16,
+            "driver_sha256": "4db3f94567ba863210e89abcf83407945662bf968cea825a8d6269b647eb2899",
+            "pairing_verified": true
+          }
+        ]
+      }
+    ],
+    "comparison_formulas": {
+      "absolute_error_rate_reduction_percentage_points": "baseline_error_rate_percent - sft_error_rate_percent",
+      "relative_error_rate_reduction_percent": "100 * (baseline_error_rate_percent - sft_error_rate_percent) / baseline_error_rate_percent; null if baseline is zero",
+      "sign": "Positive reduction means improvement; negative reduction means degradation"
+    }
+  },
+  "baseline_comparisons": [
+    {
+      "case": "qwen3_asr_aishell",
+      "model": "Qwen3-ASR-0.6B",
+      "corpus": "aishell",
+      "split": "test",
+      "metric": "cer",
+      "utterances": 7176,
+      "reference_units": 104765,
+      "baseline_error_rate_percent": 2.112346680666253,
+      "sft_error_rate_percent": 1.665632606309359,
+      "absolute_error_rate_reduction_percentage_points": 0.44671407435689425,
+      "sft_minus_baseline_percentage_points": -0.44671407435689425,
+      "relative_error_rate_reduction_percent": 21.147763217352022,
+      "baseline_error_counts": {
+        "S": 2056,
+        "D": 79,
+        "I": 78,
+        "errors": 2213
+      },
+      "sft_error_counts": {
+        "S": 1605,
+        "D": 70,
+        "I": 70,
+        "errors": 1745
+      }
+    },
+    {
+      "case": "qwen3_asr_librispeech",
+      "model": "Qwen3-ASR-0.6B",
+      "corpus": "librispeech",
+      "split": "test-clean",
+      "metric": "wer",
+      "utterances": 2620,
+      "reference_units": 53027,
+      "baseline_error_rate_percent": 2.2535689365794784,
+      "sft_error_rate_percent": 1.9970958191110189,
+      "absolute_error_rate_reduction_percentage_points": 0.2564731174684596,
+      "sft_minus_baseline_percentage_points": -0.2564731174684596,
+      "relative_error_rate_reduction_percent": 11.380753138075319,
+      "baseline_error_counts": {
+        "S": 939,
+        "D": 162,
+        "I": 94,
+        "errors": 1195
+      },
+      "sft_error_counts": {
+        "S": 822,
+        "D": 94,
+        "I": 143,
+        "errors": 1059
+      }
+    },
+    {
+      "case": "qwen3_asr_librispeech",
+      "model": "Qwen3-ASR-0.6B",
+      "corpus": "librispeech",
+      "split": "test-other",
+      "metric": "wer",
+      "utterances": 2939,
+      "reference_units": 52882,
+      "baseline_error_rate_percent": 4.544079270829394,
+      "sft_error_rate_percent": 4.424946106425627,
+      "absolute_error_rate_reduction_percentage_points": 0.11913316440376676,
+      "sft_minus_baseline_percentage_points": -0.11913316440376676,
+      "relative_error_rate_reduction_percent": 2.621722846441945,
+      "baseline_error_counts": {
+        "S": 1892,
+        "D": 267,
+        "I": 244,
+        "errors": 2403
+      },
+      "sft_error_counts": {
+        "S": 1864,
+        "D": 171,
+        "I": 305,
+        "errors": 2340
+      }
+    },
+    {
+      "case": "fireredasr_llm_aishell",
+      "model": "FireRedASR-LLM-L",
+      "corpus": "aishell",
+      "split": "test",
+      "metric": "cer",
+      "utterances": 7176,
+      "reference_units": 104765,
+      "baseline_error_rate_percent": 0.7674318713310743,
+      "sft_error_rate_percent": 0.8113396649644442,
+      "absolute_error_rate_reduction_percentage_points": -0.04390779363336994,
+      "sft_minus_baseline_percentage_points": 0.04390779363336994,
+      "relative_error_rate_reduction_percent": -5.721393034825874,
+      "baseline_error_counts": {
+        "S": 689,
+        "D": 60,
+        "I": 55,
+        "errors": 804
+      },
+      "sft_error_counts": {
+        "S": 733,
+        "D": 58,
+        "I": 59,
+        "errors": 850
+      }
+    },
+    {
+      "case": "fireredasr_llm_librispeech",
+      "model": "FireRedASR-LLM-L",
+      "corpus": "librispeech",
+      "split": "test-clean",
+      "metric": "wer",
+      "utterances": 2620,
+      "reference_units": 53027,
+      "baseline_error_rate_percent": 1.704791898466819,
+      "sft_error_rate_percent": 1.5878703302091388,
+      "absolute_error_rate_reduction_percentage_points": 0.11692156825768008,
+      "sft_minus_baseline_percentage_points": -0.11692156825768008,
+      "relative_error_rate_reduction_percent": 6.858407079646018,
+      "baseline_error_counts": {
+        "S": 710,
+        "D": 76,
+        "I": 118,
+        "errors": 904
+      },
+      "sft_error_counts": {
+        "S": 644,
+        "D": 80,
+        "I": 118,
+        "errors": 842
+      }
+    },
+    {
+      "case": "fireredasr_llm_librispeech",
+      "model": "FireRedASR-LLM-L",
+      "corpus": "librispeech",
+      "split": "test-other",
+      "metric": "wer",
+      "utterances": 2939,
+      "reference_units": 52882,
+      "baseline_error_rate_percent": 3.8009152452630386,
+      "sft_error_rate_percent": 3.5361748799213344,
+      "absolute_error_rate_reduction_percentage_points": 0.2647403653417042,
+      "sft_minus_baseline_percentage_points": -0.2647403653417042,
+      "relative_error_rate_reduction_percent": 6.965174129353234,
+      "baseline_error_counts": {
+        "S": 1616,
+        "D": 151,
+        "I": 243,
+        "errors": 2010
+      },
+      "sft_error_counts": {
+        "S": 1493,
+        "D": 148,
+        "I": 229,
+        "errors": 1870
+      }
+    }
+  ]
 }

@@ -975,5 +975,180 @@
         "errors": 1870
       }
     }
-  ]
+  ],
+  "learning_rate_only_comparison": {
+    "status": "passed",
+    "date_completed": "2026-10-12",
+    "date_audited": "2026-10-13",
+    "source_commit": "5cea58084d90e134baf51607e7946895b045ee19",
+    "artifacts_directory": "output/asr_benchmark_20261010/lr_only_20261012",
+    "job": {
+      "job_id": "job-179179381723160255448-jiaqi-guo",
+      "scheduler_status": "Completed",
+      "exit_code": 0,
+      "start_time_local": "2026-10-12T16:30:06+08:00",
+      "end_time_local": "2026-10-12T19:10:36+08:00",
+      "timezone": "Asia/Shanghai",
+      "job_duration_seconds": 9630
+    },
+    "hardware": {
+      "gpu": "NVIDIA A800-SXM4-80GB",
+      "gpu_count": 1
+    },
+    "changed_training_parameters": {
+      "learning_rate": {
+        "previous": 0.0001,
+        "current": 1e-05
+      }
+    },
+    "training": {
+      "learning_rate": 1e-05,
+      "vit_lr": 1e-05,
+      "aligner_lr": 1e-05,
+      "num_train_epochs": 1.0,
+      "per_device_train_batch_size": 8,
+      "per_device_eval_batch_size": 2,
+      "gradient_accumulation_steps": 2,
+      "lora_rank": 8,
+      "lora_alpha": 32.0,
+      "weight_decay": 0.1,
+      "adam_epsilon": 1e-08,
+      "adam_beta1": 0.9,
+      "adam_beta2": 0.95,
+      "warmup_ratio": 0.05,
+      "lr_scheduler_type": "cosine",
+      "gradient_checkpointing": true,
+      "torch_dtype": "bfloat16",
+      "attn_impl": "sdpa",
+      "seed": 20261010,
+      "data_seed": 20261010,
+      "dataloader_drop_last": false,
+      "actual_lora_dropout": 0.0,
+      "effective_batch_size": 16,
+      "optimizer_steps": 7507,
+      "final_dev_loss": 0.04538002610206604,
+      "train_augmentation": "none",
+      "initialization": "official FireRed LoRA merged, then fresh r8/alpha32 SFT adapter",
+      "resume_previous_run": false
+    },
+    "data": {
+      "train_samples": 120098,
+      "dev_samples": 14326,
+      "test_samples": 7176,
+      "test_reference_characters": 104765,
+      "prepared_train_manifest_byte_identical_to_previous": true,
+      "prepared_train_manifest_sha256": "7eb895db423e6a6424971f7a5dee3e8a462aebda09b6cabf7434f8fe56a24f6f",
+      "raw_train_manifest_sha256": "f68c8e42a939e438c254068800d30df5abc2fd0fb68f1d2444659f6772e7909b",
+      "prepared_dev_manifest_sha256": "b240dee61b284745d4cc2acbc26e268b69315ab60494007735aa48e1dc85936b",
+      "test_manifest_sha256": "f5845d431dab5fa109b2f5c3088a8a6ad2b842d6f9f6ec7b6d2cd14895ced8f7"
+    },
+    "evaluation": {
+      "batch_size": 16,
+      "max_new_tokens": 512,
+      "torch_dtype": "bfloat16",
+      "attn_impl": "sdpa",
+      "seed": 42,
+      "generation": {
+        "do_sample": false,
+        "num_beams": 1,
+        "repetition_penalty": 1.0,
+        "use_cache": true
+      },
+      "prompt": "请转写音频为文字"
+    },
+    "comparison": {
+      "original": {
+        "metric": "cer",
+        "utterances": 7176,
+        "ref_units": 104765,
+        "S": 689,
+        "D": 60,
+        "I": 55,
+        "errors": 804,
+        "error_rate_percent": 0.7674318713310743
+      },
+      "previous_sft": {
+        "metric": "cer",
+        "utterances": 7176,
+        "ref_units": 104765,
+        "S": 733,
+        "D": 58,
+        "I": 59,
+        "errors": 850,
+        "error_rate_percent": 0.8113396649644442
+      },
+      "lr_only_sft": {
+        "metric": "cer",
+        "utterances": 7176,
+        "ref_units": 104765,
+        "S": 713,
+        "D": 56,
+        "I": 61,
+        "errors": 830,
+        "error_rate_percent": 0.7922493199064573
+      }
+    },
+    "cer_improvement_pp": {
+      "vs_original": -0.02481744857538304,
+      "vs_previous_sft": 0.0190903450579869
+    },
+    "error_count_change": {
+      "vs_original": 26,
+      "vs_previous_sft": -20
+    },
+    "relative_error_reduction_percent": {
+      "vs_original": -3.2338308457711444,
+      "vs_previous_sft": 2.3529411764705883
+    },
+    "verification": {
+      "full_training": "passed",
+      "configuration_and_optimizer": "passed",
+      "independent_full_test_recalculation": "passed",
+      "truncated_samples": 0,
+      "checkpoint_loading": {
+        "actual_llm_attn_implementation": "sdpa",
+        "official_lora_merged": true,
+        "sft_adapter_loaded": true,
+        "vit_checked_parameters": 554
+      },
+      "optimizer": {
+        "groups": 5,
+        "states": 946,
+        "steps": 7507,
+        "moment_elements": 1505512640,
+        "moment_dtypes": {
+          "torch.bfloat16": 1465142464,
+          "torch.float32": 40370176
+        }
+      },
+      "predictions_sha256": "be0c338d3122b715625386b8d80d6c64271b769d63c21eb917eaebd9912c5fa4",
+      "checkpoint_files_sha256": {
+        "adapter_config.json": "655e4aec86d989a8cfe078953894263e702e3988d3590c39f0bffd6693c1e262",
+        "adapter_model.safetensors": "e405c839e024d560c0da771823b4cde92085ea590e0e9891cf276e06de080956",
+        "vit.safetensors": "e53911838d4b1e06e96514d18164e55e6969c029ad4354f12ad21e4e43b9b1f8"
+      },
+      "proof_files_sha256": {
+        "pretrain-verification.json": "87ef9dd710e81638be1ad45828e3954baaa58195136207f56f0b888adf01a880",
+        "training-verification.json": "b3a2a6baddb1e2eed0523d86d9b7c5655f25629cad90d7bb6013d3c4eded4427",
+        "configuration-verification.json": "bba7c26f771c31fadee0d932f6eb6f7d44674d919ed68892871b78712a2ac7f8",
+        "test_predictions.jsonl.metadata.json": "4ad2599cf2be336c55255294861cadccdaed5bfcb97a77d75b1e3ae53037fcc0",
+        "test_metrics.json": "40c81f17452210664ff59a923d1aa7f4005b6ed5646cc4cd35489be584a8a817",
+        "result.json": "594b6be2ccff0462f14972c57374f485b539e88698dda0c24777149ba2910128",
+        "independent-audit.json": "5ca5fd74ffac59ea650653e9b406405fada7bf62723b65ad26ebe25c0666b62a",
+        "scheduler-verification.json": "8ecb42fce01e4037a0a734a2c6ea384463acdbaee84cfcca8a2e6196441e4b9e"
+      }
+    },
+    "script_sha256": {
+      "output/asr_benchmark_20261010/lr_only_20261012/config.sh": "b8232f18b5cdc5c1753ab31e73c7124235d9d53f163096970741f3fda8be14cd",
+      "output/asr_benchmark_20261010/lr_only_20261012/run.sh": "2ae769fd13955bed4ca1266b0c72e9f8098a0d6053ad21bfcb875b3b75eb97bd",
+      "output/asr_benchmark_20261010/lr_only_20261012/validate_experiment.py": "5a10cb07a0fafd70c02333d66ecd6c82125a5f103b6fb8104521dd0a33450ec0",
+      "output/asr_benchmark_20261010/lr_only_20261012/test_validate_experiment.py": "4312f3c2e834328c741abd081e8d0dc661face26b696b5779d08471e1fd40832",
+      "output/asr_benchmark_20261010/environment.sh": "15eefcd6fcbd65956d2eba5948a9749200a558f98766d72b0f773f48054917b0",
+      "output/asr_benchmark_20261010/verify_training.py": "bdd1acfcb7d53f50c7c7c6663df915d3e0786159908d98938cfe8c90ddee7bdb",
+      "output/asr_benchmark_20261010/firered_decode.py": "4db3f94567ba863210e89abcf83407945662bf968cea825a8d6269b647eb2899",
+      "output/asr_benchmark_20261010/score.py": "b1bc692c138d645dfa80c8636713ae5c9588462610fa9de9765aaba6e5beef08",
+      "examples/fireredasr_llm/sft.sh": "9ec9c0053c08fdfd2ade6432c903874a6723525a751012600f9bb3c061fdcd14"
+    },
+    "interpretation": "Lower CER than the previous SFT run, but still higher than original weights; one fixed-seed learning-rate comparison does not establish multi-run improvement or an internal mechanism."
+  }
 }

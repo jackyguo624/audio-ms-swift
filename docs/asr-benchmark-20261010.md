@@ -56,3 +56,22 @@ FireRed AISHELL 的首次测试因 fresh `--resume` 状态判断失败；修复�
 FireRed AISHELL-1 的逐句退化分析见 [case 分析](firered-aishell-case-analysis-20261012.md)：105 句错误增加、72 句减少，净多 46 个字错误，主要净变化是替换 +44。报告区分了内容变化、书写/参考敏感 case，并给出配对说话人重采样结果。
 
 进一步的 [退化原因分析](firered-aishell-regression-causes-20261012.md)补做两组完整测试的组件替换：原始 804 错，LLM-only 849，audio-only 812，完整 SFT 850。固定 checkpoint 下的退化主要随 LLM LoRA 替换复现，训练机制与超参数原因仍需受控对照。
+
+
+**2026-10-12 完成：仅降低 FireRed LLM 学习率的追加对照（2026-10-13 复核）**
+
+本次使用原始 AISHELL-1 全量训练集 120,098 条，准备后的训练清单与上一组不加噪实验字节一致，音频路径、转写、顺序均保持原样。仅将 LLM 学习率从 `1e-4` 降为 `1e-5`；音频编码器/投影层仍为 `1e-5`。仍从原始 FireRedASR-LLM-L 权重独立开始，官方预训练 LoRA 先合并，再训练新建的 rank 8 / alpha 32 / 实际 dropout 0.0 适配器及音频模块。
+
+保留单张 A800 80GB、batch 8 × 梯度累积 2、1 epoch / 7,507 updates、AdamW betas 0.9/0.95、eps `1e-8`、weight decay 0.1、cosine/warmup ratio 0.05、原有精度与 checkpoint 选择策略；没有启用加噪、混响、SpecAugment、动态 batch 或旧 checkpoint 续训。源码为 `5cea58084d90e134baf51607e7946895b045ee19`；与上一组训练源码相比，模型/特征/训练插件未变，仅 Bash 默认 LLM 学习率一行变化。
+
+| FireRed AISHELL-1 对照 | LLM 学习率 | 完整 test CER | 字错误数 | S / D / I |
+| --- | --- | ---: | ---: | --- |
+| 原始权重 | — | 0.7674% | 804 | 689 / 60 / 55 |
+| 上次 SFT | `1e-4` | 0.8113% | 850 | 733 / 58 / 59 |
+| 本次仅降低学习率的 SFT | `1e-5` | **0.7922%** | **830** | **713 / 56 / 61** |
+
+相较上次 SFT，本次少 20 个字错误，CER 降低 0.0191 个百分点，相对错误率降低 2.35%；相较原始权重，仍多 26 个字错误，CER 高 0.0248 个百分点。降低学习率在本次固定 seed 对照中部分缓解了退化，尚未取得优于原始模型的结果；不据单次训练推断多次运行的稳定收益或内部退化机制。
+
+任务 `job-179179381723160255448-jiaqi-guo` 于 2026-10-12 19:10（Asia/Shanghai）完成训练与评测，调度状态 `Completed`、退出码 0。训练/验证检查、实际参数与优化器状态检查均通过。测试覆盖完整 7,176 条 / 104,765 个参考字，截断为 0；继续使用相同 greedy、batch 16、512 tokens、BF16、SDPA 和 seed 42，新增测试的全部句子均已独立复算 S/D/I，并核对 ID、reference、manifest、预测及 checkpoint hash。
+
+全精度指标和审核 hash 已追加到[机器可读结果](asr-benchmark-20261010.json)的 `learning_rate_only_comparison`；原有四组实验和 SFT 前后对比字段保持不变。完整工件位于本地 `output/asr_benchmark_20261010/lr_only_20261012/`。已取消的加噪任务不作为本次训练或对比结果。

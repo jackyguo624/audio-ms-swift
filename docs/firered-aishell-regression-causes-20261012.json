@@ -1100,5 +1100,243 @@
     "No controlled LR/dropout or precision sweep",
     "No multiple training seeds",
     "Bootstrap resamples held-out speaker clusters and is not training variance"
-  ]
+  ],
+  "learning_rate_only_followup": {
+    "date": "2026-10-13",
+    "status": "passed",
+    "scope_of_original_fields": "The original top-level component interventions and hypotheses describe the old LR1e-4 checkpoint; this block separately records the LR1e-5 training followup.",
+    "scope_of_followup": "Read-only paired analysis of previously completed clean LR-only training; no new GPU jobs, training, decoding or scoring-rule changes.",
+    "training_source_commit": "5cea58084d90e134baf51607e7946895b045ee19",
+    "new_checkpoint_component_intervention_performed": false,
+    "training_change": {
+      "llm_learning_rate": [
+        0.0001,
+        1e-05
+      ],
+      "train_augmentation": "none",
+      "other_training_parameters": "unchanged",
+      "original_training_manifest_byte_identical": true
+    },
+    "errors": {
+      "original": 804,
+      "previous_sft": 850,
+      "lr_only_sft": 830
+    },
+    "paired_comparisons": {
+      "lr_only_vs_original": {
+        "worse_utterances": 45,
+        "better_utterances": 28,
+        "equal_error_utterances": 7103,
+        "positive_net_error_sum": 55,
+        "negative_net_error_sum": -29,
+        "net_error_difference": 26,
+        "normalized_outputs_changed": 80,
+        "correct_to_wrong": 35,
+        "wrong_to_correct": 23,
+        "operation_difference": {
+          "S": 24,
+          "D": -4,
+          "I": 6
+        }
+      },
+      "lr_only_vs_previous_sft": {
+        "worse_utterances": 69,
+        "better_utterances": 84,
+        "equal_error_utterances": 7023,
+        "positive_net_error_sum": 82,
+        "negative_net_error_sum": -102,
+        "net_error_difference": -20,
+        "normalized_outputs_changed": 172,
+        "correct_to_wrong": 53,
+        "wrong_to_correct": 69,
+        "operation_difference": {
+          "S": -20,
+          "D": -2,
+          "I": 2
+        }
+      }
+    },
+    "regression_overlap": {
+      "previous_regressions": 105,
+      "still_worse_than_original": 28,
+      "no_longer_worse_than_original": 77,
+      "new_regressions_not_in_previous_run": 17
+    },
+    "speaker_bootstrap": {
+      "seed": 20261013,
+      "iterations": 20000,
+      "unit": "20 paired speaker clusters",
+      "interpretation": "Test-speaker composition sensitivity only, not multi-seed training variance",
+      "comparisons": {
+        "lr_only_minus_original": {
+          "point_pp": 0.024817448575383,
+          "percentile_95_ci_pp": [
+            0.0,
+            0.05550103805309082
+          ],
+          "speakers_worse": 11,
+          "speakers_better": 5,
+          "speakers_equal": 4
+        },
+        "lr_only_minus_previous_sft": {
+          "point_pp": -0.019090345057986922,
+          "percentile_95_ci_pp": [
+            -0.05086384592822409,
+            0.01256443248440028
+          ],
+          "speakers_worse": 8,
+          "speakers_better": 12,
+          "speakers_equal": 0
+        }
+      }
+    },
+    "representative_cases": [
+      {
+        "id": "BAC009S0913W0309",
+        "reference": "美的将美芝压缩机威灵电机合并",
+        "hypotheses": {
+          "original": "美的将美芝压缩机威灵电机合并",
+          "previous_sft": "美的将每只压缩机微零电机合并",
+          "lr_only_sft": "美的将美芝压缩机威灵电机合并"
+        },
+        "errors": {
+          "original": 0,
+          "previous_sft": 4,
+          "lr_only_sft": 0
+        }
+      },
+      {
+        "id": "BAC009S0765W0226",
+        "reference": "不能简单地用寅吃卯粮来作价值判断",
+        "hypotheses": {
+          "original": "不能简单地用寅吃卯粮来做价值判断",
+          "previous_sft": "不能简单地用饮鸩饱粮来做价值判断",
+          "lr_only_sft": "不能简单地用饮鸩止某良来做价值判断"
+        },
+        "errors": {
+          "original": 1,
+          "previous_sft": 4,
+          "lr_only_sft": 6
+        }
+      },
+      {
+        "id": "BAC009S0915W0458",
+        "reference": "游客骑着明孝陵驮碑龟趺拍照市民大煞风景",
+        "hypotheses": {
+          "original": "游客骑着明孝陵驮碑龟贴拍照市民大煞风景",
+          "previous_sft": "游客骑着明孝陵驮碑龟贴拍照市民大厦封顶",
+          "lr_only_sft": "游客骑着明孝陵驮碑龟贴拍照市民大煞风景"
+        },
+        "errors": {
+          "original": 1,
+          "previous_sft": 4,
+          "lr_only_sft": 1
+        }
+      },
+      {
+        "id": "BAC009S0765W0447",
+        "reference": "时年二三岁的杨柱军在北京抢劫杀害了一名出租车司机",
+        "hypotheses": {
+          "original": "时年二三岁的杨柱军在北京抢劫杀害了一名出租车司机",
+          "previous_sft": "时年二十三岁的杨柱军在北京抢劫杀害了一名出租车司机",
+          "lr_only_sft": "时年二三岁的杨柱军在北京抢劫杀害了一名出租车司机"
+        },
+        "errors": {
+          "original": 0,
+          "previous_sft": 1,
+          "lr_only_sft": 0
+        }
+      },
+      {
+        "id": "BAC009S0901W0187",
+        "reference": "农业现代化水平显着提升",
+        "hypotheses": {
+          "original": "农业现代化水平显着提升",
+          "previous_sft": "农业现代化水平显著提升",
+          "lr_only_sft": "农业现代化水平显著提升"
+        },
+        "errors": {
+          "original": 0,
+          "previous_sft": 1,
+          "lr_only_sft": 1
+        }
+      },
+      {
+        "id": "BAC009S0905W0453",
+        "reference": "温州网讯在温医大附属育英儿童医院的重监护室里",
+        "hypotheses": {
+          "original": "温州网讯在温医大附属育英儿童医院的重监护室里",
+          "previous_sft": "温州网讯在温医大附属育英儿童医院的重症监护室里",
+          "lr_only_sft": "温州网讯在温医大附属育英儿童医院的重监护室里"
+        },
+        "errors": {
+          "original": 0,
+          "previous_sft": 1,
+          "lr_only_sft": 0
+        }
+      },
+      {
+        "id": "BAC009S0905W0196",
+        "reference": "引导各地鉴借示范区发展现代农业的好做法和好经验",
+        "hypotheses": {
+          "original": "引导各地鉴借示范区发展现代农业的好做法和好经验",
+          "previous_sft": "引导各地借鉴示范区发展现代农业的好做法和好经验",
+          "lr_only_sft": "引导各地鉴借示范区发展现代农业的好做法和好经验"
+        },
+        "errors": {
+          "original": 0,
+          "previous_sft": 2,
+          "lr_only_sft": 0
+        }
+      },
+      {
+        "id": "BAC009S0765W0488",
+        "reference": "李彬彬喂大象喝水略显老态提醒网友夏天要补水",
+        "hypotheses": {
+          "original": "李彬彬喂大象喝水略显老态提醒网友夏天要补水",
+          "previous_sft": "李冰冰喂大象喝水略显老态提醒网友夏天要补水",
+          "lr_only_sft": "李彬彬喂大象喝水略显老态提醒网友夏天要补水"
+        },
+        "errors": {
+          "original": 0,
+          "previous_sft": 2,
+          "lr_only_sft": 0
+        }
+      }
+    ],
+    "interpretation": {
+      "supported_observations": [
+        "Only 80 normalized outputs change versus original, down from 191 in the previous run.",
+        "77 previous regressed utterances are no longer worse than original; this does not imply all 77 become correct.",
+        "28 previous regressions persist and 17 new regressions occur.",
+        "The observed 20-error improvement does not establish stable improvement across training seeds."
+      ],
+      "compatible_explanation": "Supervised adaptation moves local word and spelling decisions; lower LLM learning rate makes this adaptation more conservative. Internal causes are not resolved.",
+      "unverified_candidates": [
+        "Actual new LoRA dropout remains 0.0.",
+        "Merging the official adapter then fitting a fresh rank8 adapter differs from continuing the official existing adapter.",
+        "Final checkpoint selection uses no development CER trajectory; overfitting has not been established."
+      ],
+      "boundaries": [
+        "Old fixed-component interventions do not allocate the new residual 26 errors to the new LLM.",
+        "Even unchanged audio learning rates can yield different audio updates through joint-training gradients.",
+        "Speaker-cluster intervals describe test-composition sensitivity, not training-seed variance.",
+        "No audio audition or reference adjudication was performed.",
+        "Official inclusion of AISHELL-1 in pretraining is unknown."
+      ]
+    },
+    "next_diagnostic": "Compare original, checkpoint7000 and checkpoint7507 CER on dev, not test; separate future dropout or adapter-initialization contrasts.",
+    "source_metrics_sha256": {
+      "original": "211c7017119a2d005f1ea534a3065c2879f1ff7f75d56b8d5c1189415faa17bb",
+      "previous_sft": "681c95c7982e50a688a31bf7ed5f0c9500ce15722d1fe900c039b7bcd398d9e7",
+      "lr_only_sft": "40c81f17452210664ff59a923d1aa7f4005b6ed5646cc4cd35489be584a8a817"
+    },
+    "paired_summary_sha256": "fb270634c8157e9d590697878f0dd58bec25ce74f7f1e1c115eac8f4af5c835a",
+    "independent_audit_sha256": "aacbc235a3a58801792ec3ee2019a1a7766c2b915b95347bdb3d87f84329ec4b",
+    "artifacts_directory": "output/asr_benchmark_20261010/lr_only_20261012/cause_followup_20261013",
+    "external_primary_source": {
+      "url": "https://arxiv.org/html/2501.14350v1",
+      "supports": "Large-scale multi-source ASR training, transcript cross-entropy objective and reported AISHELL-1 performance; not local degradation causality."
+    }
+  }
 }
